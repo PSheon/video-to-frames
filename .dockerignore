@@ -1,0 +1,9 @@
+input/*
+stage*/*
+
+.git
+node_modules
+
+!.gitkeep
+
+ffmpeg
