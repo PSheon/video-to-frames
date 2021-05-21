@@ -1,0 +1,28 @@
+{
+  "name": "video-to-frames",
+  "version": "1.0.0",
+  "description": "影片分割工具",
+  "main": "index.js",
+  "author": "PSheon",
+  "scripts": {
+    "clean": "rimraf output/stage*/*.jpg output/stage*/*.json",
+    "dev": "NODE_ENV=development node index.js",
+    "start": "NODE_ENV=production node index.js",
+    "docker": "docker run --rm -v $(pwd)/input:/opt/input -v $(pwd)/output/stage-split:/opt/output/stage-split -v $(pwd)/output/stage-inference:/opt/output/stage-inference video-to-frames"
+  },
+  "dependencies": {
+    "@tensorflow-models/posenet": "^2.2.2",
+    "@tensorflow/tfjs": "^3.6.0",
+    "@tensorflow/tfjs-node": "^3.6.1",
+    "canvas": "^2.7.0",
+    "chalk": "^4.1.1",
+    "config": "^3.3.6",
+    "ffbinaries": "^1.1.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "ora": "^5.4.0",
+    "rimraf": "^3.0.2"
+  }
+}

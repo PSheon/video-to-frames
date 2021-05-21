@@ -3,6 +3,15 @@
 </p>
 <h3 align="center">🎬 影片分割工具</h3>
 
+<p align="center">
+  <a href="https://github.com/PSheon/video-to-frames/actions/workflows/node.yml">
+    <img alt="Node.js CI" src="https://github.com/PSheon/video-to-frames/actions/workflows/node.yml/badge.svg">
+  </a>
+  <a href="https://github.com/PSheon/video-to-frames/actions/workflows/doxker.yml">
+    <img alt="Docker CI" src="https://github.com/PSheon/video-to-frames/actions/workflows/doxker.yml/badge.svg">
+  </a>
+</p>
+
 ---
 
 使用 node.js 搭配 FFmpeg
