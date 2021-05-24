@@ -1,5 +1,5 @@
-const validateConfig = require('./validate-config')
+const validateConfig = require("./validate-config");
 
 module.exports = {
   validateConfig,
-}
+};

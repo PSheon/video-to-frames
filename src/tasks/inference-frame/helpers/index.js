@@ -1,5 +1,5 @@
-const inferencePoseProcess = require('./inferencePose')
+const inferencePoseProcess = require("./inferencePose");
 
 module.exports = {
   inferencePoseProcess,
-}
+};

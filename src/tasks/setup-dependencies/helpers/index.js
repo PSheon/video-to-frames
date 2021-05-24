@@ -1,5 +1,5 @@
-const installFFMPEG = require('./install-ffmpeg')
+const installFFMPEG = require("./install-ffmpeg");
 
 module.exports = {
   installFFMPEG,
-}
+};

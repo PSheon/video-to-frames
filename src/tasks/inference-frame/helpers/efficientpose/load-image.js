@@ -1,24 +1,24 @@
-const fs = require('fs')
-const path = require('path')
-const tf = require('@tensorflow/tfjs-node')
+const fs = require("fs");
+const path = require("path");
+const tf = require("@tensorflow/tfjs-node");
 
 module.exports = (fileName, inputSize) =>
   new Promise(async (resolve) => {
-    const baseDirName = path.dirname(require.main.filename)
+    const baseDirName = path.dirname(require.main.filename);
 
     const data = fs.readFileSync(
-      path.resolve(baseDirName, 'output', 'stage-split', fileName),
-    )
+      path.resolve(baseDirName, "output", "stage-split", fileName),
+    );
     const obj = tf.tidy(() => {
-      const buffer = tf.node.decodeImage(data)
-      const expand = buffer.expandDims(0)
-      const cast = expand.cast('float32')
+      const buffer = tf.node.decodeImage(data);
+      const expand = buffer.expandDims(0);
+      const cast = expand.cast("float32");
       // const pad = padImage(cast);
-      const pad = expand
+      const pad = expand;
       // @ts-ignore
-      const resize = tf.image.resizeBilinear(cast, [inputSize, inputSize])
-      const normalize = resize.div(127.5).sub(1)
-      const tensor = normalize
+      const resize = tf.image.resizeBilinear(cast, [inputSize, inputSize]);
+      const normalize = resize.div(127.5).sub(1);
+      const tensor = normalize;
       const img = {
         // fileName: path.resolve(baseDirName, 'output', 'stage-split', fileName),
         fileName,
@@ -27,9 +27,9 @@ module.exports = (fileName, inputSize) =>
         paddedShape: pad?.shape,
         modelShape: tensor?.shape,
         size: buffer?.size,
-      }
-      return img
-    })
+      };
+      return img;
+    });
 
-    resolve(obj)
-  })
+    resolve(obj);
+  });

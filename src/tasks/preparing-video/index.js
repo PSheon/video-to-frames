@@ -1,16 +1,18 @@
-'use strict'
+"use strict";
 
-const PROCESS_ENV = require('config')
+const PROCESS_ENV = require("config");
 
-const fs = require('fs')
-const path = require('path')
-const chalk = require('chalk')
-const ora = require('ora')
+const fs = require("fs");
+const path = require("path");
+const chalk = require("chalk");
+const ora = require("ora");
 
 module.exports = () =>
   new Promise((resolve, reject) => {
-    const spinner = new ora('準備影片中...').start()
-    const baseDirName = path.dirname(require.main.filename)
+    const spinner = new ora("準備影片中...").start();
+    const baseDirName = path.dirname(require.main.filename);
+
+    console.log("baseDirName, ", baseDirName);
 
     if (
       !fs.existsSync(
@@ -27,10 +29,10 @@ module.exports = () =>
         )} 放在路徑 ${chalk.yellow(
           path.resolve(baseDirName, PROCESS_ENV.INPUT_VIDEO_PATH),
         )} 下.`,
-      )
-      process.exit(1)
+      );
+      process.exit(1);
     }
 
-    spinner.succeed(`${chalk.green('[準備影片]')} 已完成`)
-    resolve()
-  })
+    spinner.succeed(`${chalk.green("[準備影片]")} 已完成`);
+    resolve();
+  });
