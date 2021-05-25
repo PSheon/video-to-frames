@@ -20,8 +20,6 @@ const CONFIG_SCHEMA: JTDSchemaType<TConfig> = {
         "efficientpose-iv",
       ],
     },
-    POSENET_INFERENCE_SCALE_FACTOR: { type: "float32" },
-    POSENET_INFERENCE_OUTPUT_STRIDE: { type: "int32" },
     POSENET_INFERENCE_FLIP_HORIZONTAL: { type: "boolean" },
     EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD: { type: "float32" },
   },

@@ -10,8 +10,6 @@ export default {
   /* 圖片推理 */
   MODEL_NAME: "efficientpose-ii-lite",
   /* Pose Net */
-  POSENET_INFERENCE_SCALE_FACTOR: 0.5,
-  POSENET_INFERENCE_OUTPUT_STRIDE: 16,
   POSENET_INFERENCE_FLIP_HORIZONTAL: false,
   /* Efficient Pose */
   EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD: 0.45,

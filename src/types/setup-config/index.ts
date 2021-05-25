@@ -13,8 +13,6 @@ export type TConfig = {
     | "efficientpose-ii-lite"
     | "efficientpose-iv";
 
-  POSENET_INFERENCE_SCALE_FACTOR: number;
-  POSENET_INFERENCE_OUTPUT_STRIDE: number;
   POSENET_INFERENCE_FLIP_HORIZONTAL: boolean;
   EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD: number;
 };
