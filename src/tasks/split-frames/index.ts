@@ -1,53 +1,59 @@
-"use strict";
+import PROCESS_ENV from "config";
 
-const PROCESS_ENV = require("config");
+import fs from "fs";
+import ora from "ora";
+import path from "path";
+import chalk from "chalk";
+import ffmpeg from "fluent-ffmpeg";
 
-const fs = require("fs");
-const path = require("path");
-const chalk = require("chalk");
-const ora = require("ora");
-const ffmpeg = require("fluent-ffmpeg");
+export default function (): Promise<void> {
+  return new Promise((resolve) => {
+    const spinner = ora("分割影片中...").start();
+    const baseDirName = global["baseDirName"];
 
-module.exports = () =>
-  new Promise((resolve, reject) => {
-    const spinner = new ora("分割影片中...").start();
-    const baseDirName = path.dirname(require.main.filename);
+    console.log("baseDirName, ", baseDirName);
 
     ffmpeg.setFfmpegPath(
-      path.resolve(baseDirName, path.join(baseDirName, "ffmpeg", "ffmpeg")),
+      path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffmpeg")),
     );
     ffmpeg.setFfprobePath(
-      path.resolve(baseDirName, path.join(baseDirName, "ffmpeg", "ffprobe")),
+      path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffprobe")),
     );
 
     ffmpeg(
       path.resolve(
         baseDirName,
-        PROCESS_ENV.INPUT_VIDEO_PATH,
-        PROCESS_ENV.INPUT_VIDEO_FILENAME,
+        PROCESS_ENV.get("INPUT_VIDEO_PATH"),
+        PROCESS_ENV.get("INPUT_VIDEO_FILENAME"),
       ),
     )
       .on("codecData", (data) => {
         spinner.text = `Input is ${data.audio} audio with ${data.video} video"`;
       })
-      .on("error", (err, stdout, stderr) => {
+      .on("error", (err) => {
         spinner.fail(`${chalk.red("[階段一]")} 影片分割失敗: ${err.message}`);
-        reject(err.message);
+        process.exit(1);
       })
-      .on("end", (stdout, stderr) => {
+      .on("end", () => {
         spinner.succeed(`${chalk.green("[階段一]")} 影片分割完成！`);
         resolve();
       })
-      .fps(PROCESS_ENV.INPUT_VIDEO_FRAME_SAMPLING)
+      .fps(PROCESS_ENV.get("INPUT_VIDEO_FRAME_SAMPLING"))
       .save(
         path.resolve(
           baseDirName,
           "output",
           "stage-split",
-          `${PROCESS_ENV.SPLIT_FRAME_IMAGE_PREFIX}_%05d.jpg`,
+          `${PROCESS_ENV.get("SPLIT_FRAME_IMAGE_PREFIX")}_%05d.jpg`,
         ),
       )
       .ffprobe(function (err, metadata) {
+        if (err) {
+          spinner.fail(
+            `${chalk.red("[階段一]")} 無法取得影片資訊: ${err.message}`,
+          );
+          process.exit(1);
+        }
         const videoMetadata = metadata.streams.find(
           (item) => item.codec_type == "video",
         );
@@ -69,3 +75,4 @@ module.exports = () =>
         );
       });
   });
+}
