@@ -1,16 +1,14 @@
-"use strict";
+import ora from "ora";
+import chalk from "chalk";
 
-const ora = require("ora");
-const chalk = require("chalk");
+import { inferencePoseProcess } from "./helpers";
 
-const { inferencePoseProcess } = require("./helpers");
-
-module.exports = () =>
-  new Promise(async (resolve) => {
-    const spinner = new ora(`${chalk.green("[階段二]")} 推理影片中...`).start();
+export default function (): Promise<void> {
+  return new Promise(async (resolve) => {
+    const spinner = ora(`${chalk.green("[階段二]")} 推理影片中...`).start();
 
     const startTime = process.hrtime.bigint();
-    await inferencePoseProcess(spinner);
+    await inferencePoseProcess({ spinner });
     const endTime = process.hrtime.bigint();
 
     console.log(
@@ -24,3 +22,4 @@ module.exports = () =>
     spinner.succeed(`${chalk.green("[階段二]")} 影片推理完成！`);
     resolve();
   });
+}

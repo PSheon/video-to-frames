@@ -1,4 +1,4 @@
-const getModelType = (modelName) => {
+const getModelType = (modelName: string): string => {
   if (modelName.includes("blazepose")) {
     return "blazepose";
   }
@@ -9,14 +9,11 @@ const getModelType = (modelName) => {
   return "posenet";
 };
 
-const getEfficientPoseModelPath = (modelName) => {
+const getEfficientPoseModelPath = (modelName: string): string => {
   return `file://src/model/efficientpose/${String(modelName).replace(
     "efficientpose-",
     "",
   )}/efficientpose.json`;
 };
 
-module.exports = {
-  getModelType,
-  getEfficientPoseModelPath,
-};
+export { getModelType, getEfficientPoseModelPath };

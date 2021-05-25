@@ -1,15 +1,13 @@
-"use strict";
+import { readdir } from "fs/promises";
+import path from "path";
+import chalk from "chalk";
 
-const { readdir } = require("fs/promises");
-const path = require("path");
+import inferencePose from "./inferencePose";
+import { IPoseNetInferenceInput } from "../../../../types";
 
-const chalk = require("chalk");
-
-const inferencePose = require("./inferencePose");
-
-module.exports = ({ spinner }) =>
-  new Promise(async (resolve) => {
-    const baseDirName = path.dirname(require.main.filename);
+export default function ({ spinner }: IPoseNetInferenceInput): Promise<void> {
+  return new Promise(async (resolve) => {
+    const baseDirName = global["baseDirName"];
     const frames = await readdir(
       path.resolve(baseDirName, "output", "stage-split"),
     );
@@ -33,3 +31,4 @@ module.exports = ({ spinner }) =>
 
     resolve();
   });
+}
