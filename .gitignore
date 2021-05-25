@@ -49,8 +49,8 @@ typings/
 
 # dotenv environment variables file
 # ignore production configuration
-config/*.js
-!config/default.js
+config/*.ts
+!config/default.ts
 
 # input folder
 input/*

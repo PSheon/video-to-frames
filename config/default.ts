@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   /* 輸入影片 */
   INPUT_VIDEO_PATH: "input",
   INPUT_VIDEO_FILENAME: "input.mp4",
@@ -15,4 +15,4 @@ module.exports = {
   POSENET_INFERENCE_FLIP_HORIZONTAL: false,
   /* Efficient Pose */
   EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD: 0.45,
-}
+};
