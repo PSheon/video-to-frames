@@ -1,9 +1,11 @@
-const path = require("path");
+import path from "path";
 
-const chalk = require("chalk");
-const ffbinaries = require("ffbinaries");
+import ffbinaries from "ffbinaries";
+import chalk from "chalk";
 
-module.exports = ({ baseDirName, spinner }) =>
+import { IInstallFFMPEGInput } from "types";
+
+export default ({ spinner, baseDirName }: IInstallFFMPEGInput): Promise<void> =>
   new Promise((resolve) => {
     const platform = ffbinaries.detectPlatform();
     ffbinaries.downloadBinaries(

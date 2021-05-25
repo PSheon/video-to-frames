@@ -1,6 +1,7 @@
 import PROCESS_ENV from "config";
 
 import chalk from "chalk";
+import path from "path";
 import moment from "moment";
 import ora from "ora";
 
@@ -19,6 +20,9 @@ export default function (): void {
   /* Moment */
   moment.locale("zh-tw");
   moment.tz.setDefault("Asia/Taipei");
+
+  /* Global */
+  global["baseDirName"] = path.join(__dirname, "../../../");
 
   spinner.succeed(`${chalk.green("[環境設定]")} 格式正確`);
 }
