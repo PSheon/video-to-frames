@@ -26,7 +26,4 @@ const BODY_PARTS = [
   "leftAnkle",
 ];
 
-module.exports = {
-  ACCEPT_MODEL_NAME,
-  BODY_PARTS,
-};
+export { ACCEPT_MODEL_NAME, BODY_PARTS };
