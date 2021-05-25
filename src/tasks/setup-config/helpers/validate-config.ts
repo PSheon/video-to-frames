@@ -1,7 +1,7 @@
 import Ajv, { JTDSchemaType } from "ajv/dist/jtd";
 
 import chalk from "chalk";
-import localizeError from "tasks/setup-config/helpers/localize-error";
+import localizeError from "./localize-error";
 import { TConfig, IValidConfigInput } from "types";
 
 const ajv = new Ajv({ allErrors: true });
