@@ -1,7 +1,8 @@
 <p align="center">
-  <img src=".github/assets/EfficientPose.jpg" weight="100%" alt="影片分割工具" />
+  <img src=".github/assets/EfficientPose.jpg" weight="100%" alt="efficient pose" />
+  <img src=".github/assets/movenet.jpg" weight="100%" alt="move net" />
 </p>
-<h3 align="center">🎬 影片分割工具</h3>
+<h3 align="center">🎬 影片分割 + 🏃肢體偵測 工具</h3>
 
 <p align="center">
   <a href="https://github.com/PSheon/video-to-frames/actions/workflows/node.yml">
@@ -28,7 +29,12 @@
    - efficientpose-ii-lite
    - efficientpose-iv
 
-3. Blaze Pose
+3. Efficient Pose
+
+   - movenet-lightning
+   - movenet-thunder
+
+4. Blaze Pose
 
    - 開發中
 

@@ -1,6 +1,6 @@
 {
   "name": "video-to-frames",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "影片分割工具",
   "author": "PSheon",
   "scripts": {
