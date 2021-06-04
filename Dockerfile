@@ -10,7 +10,6 @@ RUN apt-get update && \
 WORKDIR /opt
 COPY package*.json ./
 COPY config/default.ts config/production.ts
-COPY config/production.ts config/production.ts
 
 RUN npm install
 
