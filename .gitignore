@@ -62,5 +62,8 @@ output/stage*/*
 # don't ignore keep files
 !.gitkeep
 
+# build
+dist
+
 # FFmpeg dependencies
 ffmpeg

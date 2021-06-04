@@ -10,7 +10,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "docker": "docker run --rm -v $(pwd)/input:/opt/input -v $(pwd)/output/stage-split:/opt/output/stage-split -v $(pwd)/output/stage-inference:/opt/output/stage-inference video-to-frames"
+    "docker": "docker run -v $(pwd)/input:/opt/input -v $(pwd)/output/stage-split:/opt/output/stage-split -v $(pwd)/output/stage-inference:/opt/output/stage-inference video-to-frames"
   },
   "dependencies": {
     "@tensorflow-models/posenet": "^2.2.2",
