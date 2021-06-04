@@ -4,7 +4,7 @@ import fs from "fs";
 import ora from "ora";
 import path from "path";
 import chalk from "chalk";
-import ffmpeg from "fluent-ffmpeg";
+import ffmpeg, { FfprobeStream } from "fluent-ffmpeg";
 
 export default function (): Promise<void> {
   return new Promise((resolve) => {
@@ -36,6 +36,9 @@ export default function (): Promise<void> {
         spinner.succeed(`${chalk.green("[階段一]")} 影片分割完成！`);
         resolve();
       })
+      .size("640x?")
+      .aspect("1:1")
+      .autopad()
       .fps(PROCESS_ENV.get("INPUT_VIDEO_FRAME_SAMPLING"))
       .save(
         path.resolve(
@@ -54,7 +57,7 @@ export default function (): Promise<void> {
         }
         const videoMetadata = metadata.streams.find(
           (item) => item.codec_type == "video",
-        );
+        ) as FfprobeStream;
 
         const META_DATA = {
           duration: videoMetadata.duration,
