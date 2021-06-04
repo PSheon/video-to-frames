@@ -6,7 +6,7 @@ module.exports = (res, img) =>
   new Promise(async (resolve, reject) => {
     const c = new canvas.Canvas(img.inputShape[1], img.inputShape[0]);
     const ctx = c.getContext("2d");
-    const baseDirName = path.dirname(require.main.filename);
+    const baseDirName = global["baseDirName"];
 
     // load and draw original image
     const original = await canvas.loadImage(

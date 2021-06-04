@@ -9,7 +9,7 @@ const { getEfficientPoseModelPath } = require("../shared");
 
 module.exports = ({ spinner, modelName }) =>
   new Promise(async (resolve) => {
-    const baseDirName = path.dirname(require.main.filename);
+    const baseDirName = global["baseDirName"];
 
     const model = await tf.loadGraphModel(getEfficientPoseModelPath(modelName));
     const inputSize = Object.values(model.modelSignature["inputs"])[0]

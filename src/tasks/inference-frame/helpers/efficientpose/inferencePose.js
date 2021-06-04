@@ -9,7 +9,7 @@ const saveImage = require("./save-image");
 
 module.exports = ({ model, inputSize, frame }) =>
   new Promise(async (resolve) => {
-    const baseDirName = path.dirname(require.main.filename);
+    const baseDirName = global["baseDirName"];
     const img = await loadImage(frame, inputSize);
 
     const t0 = process.hrtime.bigint();

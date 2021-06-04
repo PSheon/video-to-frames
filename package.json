@@ -18,7 +18,7 @@
     "@tensorflow/tfjs": "^3.6.0",
     "@tensorflow/tfjs-node": "^3.6.1",
     "ajv": "^8.5.0",
-    "canvas": "^2.7.0",
+    "canvas": "^2.8.0",
     "chalk": "^4.1.1",
     "config": "^3.3.6",
     "ffbinaries": "^1.1.4",

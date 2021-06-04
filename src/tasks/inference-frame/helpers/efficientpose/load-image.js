@@ -4,7 +4,7 @@ const tf = require("@tensorflow/tfjs-node");
 
 module.exports = (fileName, inputSize) =>
   new Promise(async (resolve) => {
-    const baseDirName = path.dirname(require.main.filename);
+    const baseDirName = global["baseDirName"];
 
     const data = fs.readFileSync(
       path.resolve(baseDirName, "output", "stage-split", fileName),
