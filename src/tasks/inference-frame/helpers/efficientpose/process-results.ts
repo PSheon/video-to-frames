@@ -1,7 +1,7 @@
 /* TODO Migrate to ts */
 import PROCESS_ENV from "config";
 
-import { BODY_PARTS } from "../../../../constant";
+import { EFFICIENT_POSE_BODY_PARTS } from "../../../../constant";
 
 const tf = require("@tensorflow/tfjs-node");
 
@@ -55,7 +55,7 @@ export default function (res, img) {
         parts.push({
           id,
           score,
-          label: BODY_PARTS[id],
+          label: EFFICIENT_POSE_BODY_PARTS[id],
           xRaw,
           yRaw,
           x: Math.round(img.inputShape[1] * xRaw), // x normalized to input image size

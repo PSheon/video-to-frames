@@ -18,6 +18,8 @@ const CONFIG_SCHEMA: JTDSchemaType<TConfig> = {
         "efficientpose-i-lite",
         "efficientpose-ii-lite",
         "efficientpose-iv",
+        "movenet-lightning",
+        "movenet-thunder",
       ],
     },
     POSENET_INFERENCE_FLIP_HORIZONTAL: { type: "boolean" },

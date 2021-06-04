@@ -5,6 +5,7 @@ import chalk from "chalk";
 import posenet from "./posenet";
 import blazepose from "./blazepose";
 import efficientpose from "./efficientpose";
+import movenet from "./movenet";
 
 import { getModelType } from "./shared";
 import { IInferencePoseInput } from "../../../types";
@@ -22,6 +23,9 @@ export default function ({ spinner }: IInferencePoseInput): Promise<void> {
     }
     if (getModelType(modelName) === "efficientpose") {
       await efficientpose({ spinner, modelName });
+    }
+    if (getModelType(modelName) === "movenet") {
+      await movenet({ spinner, modelName });
     }
     resolve();
   });
