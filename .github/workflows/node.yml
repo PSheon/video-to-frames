@@ -26,9 +26,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cp config/default.js config/production.js
+      - run: cp config/default.ts config/production.ts
       - run: cp input/sample.mp4 input/input.mp4
       - run: npm install
+      - run: npm run build
       - run: npm run start
         env:
           CI: true
