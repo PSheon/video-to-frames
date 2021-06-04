@@ -1,9 +1,10 @@
-const canvas = require("canvas");
-const path = require("path");
-const fs = require("fs");
+/* TODO Migrate to ts */
+import canvas from "canvas";
+import path from "path";
+import fs from "fs";
 
-module.exports = (res, img) =>
-  new Promise(async (resolve, reject) => {
+export default function (res, img): Promise<void> {
+  return new Promise(async (resolve, reject) => {
     const c = new canvas.Canvas(img.inputShape[1], img.inputShape[0]);
     const ctx = c.getContext("2d");
     const baseDirName = global["baseDirName"];
@@ -83,3 +84,4 @@ module.exports = (res, img) =>
     });
     stream.pipe(out);
   });
+}

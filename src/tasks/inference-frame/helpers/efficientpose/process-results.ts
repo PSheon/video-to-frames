@@ -1,8 +1,8 @@
-"use strict";
+/* TODO Migrate to ts */
+import PROCESS_ENV from "config";
 
-const PROCESS_ENV = require("config");
+import { BODY_PARTS } from "../../../../constant";
 
-const { BODY_PARTS } = require("../../../../constant");
 const tf = require("@tensorflow/tfjs-node");
 
 const max2d = (inputs) => {
@@ -18,7 +18,9 @@ const max2d = (inputs) => {
     const reshaped = tf.reshape(inputs, [height * width]);
     // get highest score
     const score = tf.max(reshaped, 0).dataSync()[0];
-    if (score > PROCESS_ENV.EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD) {
+    if (
+      score > Number(PROCESS_ENV.get("EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD"))
+    ) {
       // skip coordinate calculation is score is too low
       const coords = tf.argMax(reshaped, 0);
       const x = mod(coords, width).dataSync()[0];
@@ -29,14 +31,14 @@ const max2d = (inputs) => {
   });
 };
 
-module.exports = (res, img) =>
-  new Promise((resolve) => {
+export default function (res, img) {
+  return new Promise((resolve) => {
     const squeeze = res.squeeze();
     tf.dispose(res);
     // body parts are basically just a stack of 2d tensors
     const stack = squeeze.unstack(2);
     tf.dispose(squeeze);
-    const parts = [];
+    let parts: any = [];
     // process each unstacked tensor as a separate body part
     for (let id = 0; id < stack.length; id++) {
       // actual processing to get coordinates and score
@@ -46,7 +48,10 @@ module.exports = (res, img) =>
         x / img.modelShape[2],
         y / img.modelShape[1],
       ];
-      if (score > PROCESS_ENV.EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD) {
+      if (
+        score >
+        Number(PROCESS_ENV.get("EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD"))
+      ) {
         parts.push({
           id,
           score,
@@ -62,3 +67,4 @@ module.exports = (res, img) =>
 
     resolve(parts);
   });
+}

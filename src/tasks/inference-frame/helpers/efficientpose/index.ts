@@ -1,19 +1,20 @@
-const { readdir } = require("fs/promises");
-const chalk = require("chalk");
-const path = require("path");
+/* TODO Migrate to ts */
+import { readdir } from "fs/promises";
+import chalk from "chalk";
+import path from "path";
+
+import inferencePose from "./inferencePose";
+import { getEfficientPoseModelPath } from "../shared";
 
 const tf = require("@tensorflow/tfjs-node");
 
-const inferencePose = require("./inferencePose");
-const { getEfficientPoseModelPath } = require("../shared");
-
-module.exports = ({ spinner, modelName }) =>
-  new Promise(async (resolve) => {
+export default function ({ spinner, modelName }): Promise<void> {
+  return new Promise(async (resolve) => {
     const baseDirName = global["baseDirName"];
 
     const model = await tf.loadGraphModel(getEfficientPoseModelPath(modelName));
-    const inputSize = Object.values(model.modelSignature["inputs"])[0]
-      .tensorShape.dim[2].size;
+    const inputs: any[] = model.modelSignature["inputs"];
+    const inputSize = Object.values(inputs)[0].tensorShape.dim[2].size;
 
     const frames = await readdir(
       path.resolve(baseDirName, "output", "stage-split"),
@@ -42,3 +43,4 @@ module.exports = ({ spinner, modelName }) =>
 
     resolve();
   });
+}

@@ -1,9 +1,11 @@
-const fs = require("fs");
-const path = require("path");
+/* TODO Migrate to ts */
+import fs from "fs";
+import path from "path";
+
 const tf = require("@tensorflow/tfjs-node");
 
-module.exports = (fileName, inputSize) =>
-  new Promise(async (resolve) => {
+export default function (fileName, inputSize) {
+  return new Promise(async (resolve) => {
     const baseDirName = global["baseDirName"];
 
     const data = fs.readFileSync(
@@ -33,3 +35,4 @@ module.exports = (fileName, inputSize) =>
 
     resolve(obj);
   });
+}

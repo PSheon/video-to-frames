@@ -1,16 +1,24 @@
-"use strict";
+/* TODO Migrate to ts */
+import { writeFile } from "fs/promises";
+import path from "path";
 
-const { writeFile } = require("fs/promises");
-const path = require("path");
+import processResults from "./process-results";
+import loadImage from "./load-image";
+import saveImage from "./save-image";
 
-const processResults = require("./process-results");
-const loadImage = require("./load-image");
-const saveImage = require("./save-image");
+import {
+  IEfficientPoseInferenceInput,
+  IEfficientPoseInferenceOutput,
+} from "../../../../types";
 
-module.exports = ({ model, inputSize, frame }) =>
-  new Promise(async (resolve) => {
+export default function ({
+  model,
+  inputSize,
+  frame,
+}: IEfficientPoseInferenceInput): Promise<IEfficientPoseInferenceOutput> {
+  return new Promise(async (resolve) => {
     const baseDirName = global["baseDirName"];
-    const img = await loadImage(frame, inputSize);
+    const img: any = await loadImage(frame, inputSize);
 
     const t0 = process.hrtime.bigint();
     const res = model.execute(img.tensor);
@@ -40,3 +48,4 @@ module.exports = ({ model, inputSize, frame }) =>
 
     resolve({ inferenceTime, processTime });
   });
+}
