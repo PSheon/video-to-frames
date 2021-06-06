@@ -25,8 +25,13 @@ export interface IValidConfigInput {
   config: TConfig;
 }
 
+export interface ICheckConfigInput {
+  spinner: Ora;
+  baseDirName: string;
+}
 export interface IGetConfigGlobalSettingsInput {
   spinner: Ora;
+  baseDirName: string;
 }
 export interface IGetConfigGlobalSettingsOutput {
   fileMimeType: string;

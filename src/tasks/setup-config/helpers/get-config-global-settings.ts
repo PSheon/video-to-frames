@@ -11,9 +11,8 @@ import {
 
 export default async function ({
   spinner,
+  baseDirName,
 }: IGetConfigGlobalSettingsInput): Promise<IGetConfigGlobalSettingsOutput> {
-  const baseDirName = global["baseDirName"];
-
   /* check input are image or video */
   const { mime: fileMimeType } = (await FileType.fromFile(
     path.resolve(

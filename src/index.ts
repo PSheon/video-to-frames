@@ -6,7 +6,7 @@ import inferenceFrame from "./tasks/inference-frame";
 
 const pipeline = async (): Promise<void> => {
   /* Environment Setup */
-  setupConfig();
+  await setupConfig();
   await setupDependencies();
 
   /* Preparing - Preparing Video */

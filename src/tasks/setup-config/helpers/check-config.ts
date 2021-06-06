@@ -5,9 +5,9 @@ import path from "path";
 import chalk from "chalk";
 import rimraf from "rimraf";
 
-export default function ({ spinner }) {
-  const baseDirName = global["baseDirName"];
+import { ICheckConfigInput } from "../../../types";
 
+export default function ({ spinner, baseDirName }: ICheckConfigInput): void {
   /* 刪除暫存文件 */
   if (Boolean(PROCESS_ENV.get("DELETE_PREVIOUS_OUTPUT"))) {
     rimraf.sync(path.resolve(baseDirName, "output", "stage-split/*.jpg"));
