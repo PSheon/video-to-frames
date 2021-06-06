@@ -1,11 +1,12 @@
 import { Ora } from "ora";
 
 export type TConfig = {
-  INPUT_VIDEO_PATH: string;
-  INPUT_VIDEO_FILENAME: string;
-  INPUT_VIDEO_FRAME_SAMPLING: number;
+  DELETE_PREVIOUS_OUTPUT: boolean;
+  INPUT_FILEPATH: string;
+  INPUT_FILENAME: string;
 
   SPLIT_FRAME_IMAGE_PREFIX: string;
+  INPUT_VIDEO_FRAME_SAMPLING: number;
 
   MODEL_NAME:
     | "posenet"

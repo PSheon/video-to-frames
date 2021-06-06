@@ -1,11 +1,14 @@
 export default {
-  /* 輸入影片 */
-  INPUT_VIDEO_PATH: "input",
-  INPUT_VIDEO_FILENAME: "input.mp4",
-  INPUT_VIDEO_FRAME_SAMPLING: 10,
+  /* 全域設定 */
+  DELETE_PREVIOUS_OUTPUT: true,
+
+  /* 輸入設定 */
+  INPUT_FILEPATH: "input",
+  INPUT_FILENAME: "input.mp4",
 
   /* 分割圖片 */
   SPLIT_FRAME_IMAGE_PREFIX: "frame",
+  INPUT_VIDEO_FRAME_SAMPLING: 10,
 
   /* 圖片推理 */
   MODEL_NAME: "efficientpose-ii-lite",
