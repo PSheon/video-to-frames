@@ -3,6 +3,8 @@ import path from "path";
 import chalk from "chalk";
 import ora from "ora";
 
+import ffmpeg from "fluent-ffmpeg";
+
 import { installFFMPEG } from "./helpers";
 
 /* eslint max-statements: ["error", 25] */
@@ -23,6 +25,13 @@ export default async function (): Promise<void> {
     spinner.text = `安裝 ${chalk.yellow("ffprobe")} ...`;
     await installFFMPEG({ spinner, baseDirName });
   }
+
+  ffmpeg.setFfmpegPath(
+    path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffmpeg")),
+  );
+  ffmpeg.setFfprobePath(
+    path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffprobe")),
+  );
 
   spinner.succeed(`${chalk.green("[相依套件]")} 已安裝`);
 }

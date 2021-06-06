@@ -11,13 +11,6 @@ export default function (): Promise<void> {
     const spinner = ora("分割影片中...").start();
     const baseDirName = global["baseDirName"];
 
-    ffmpeg.setFfmpegPath(
-      path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffmpeg")),
-    );
-    ffmpeg.setFfprobePath(
-      path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffprobe")),
-    );
-
     ffmpeg(
       path.resolve(
         baseDirName,
