@@ -21,8 +21,8 @@ export default function (): Promise<void> {
     ffmpeg(
       path.resolve(
         baseDirName,
-        PROCESS_ENV.get("INPUT_VIDEO_PATH"),
-        PROCESS_ENV.get("INPUT_VIDEO_FILENAME"),
+        PROCESS_ENV.get("INPUT_FILEPATH"),
+        PROCESS_ENV.get("INPUT_FILENAME"),
       ),
     )
       .on("codecData", (data) => {

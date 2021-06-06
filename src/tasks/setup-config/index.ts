@@ -8,7 +8,7 @@ import ora from "ora";
 import "moment-timezone";
 import "moment/locale/zh-tw";
 
-import { validateConfig } from "./helpers";
+import { validateConfig, checkConfig } from "./helpers";
 
 export default function (): void {
   console.log(`運行環境 > ${chalk.blue(process.env.NODE_ENV)}`);
@@ -23,6 +23,9 @@ export default function (): void {
 
   /* Global */
   global["baseDirName"] = path.join(__dirname, "../../../");
+
+  /* Check all config correctly */
+  checkConfig({ spinner });
 
   spinner.succeed(`${chalk.green("[環境設定]")} 格式正確`);
 }

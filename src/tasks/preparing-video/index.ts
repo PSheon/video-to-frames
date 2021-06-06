@@ -1,33 +1,26 @@
 import PROCESS_ENV from "config";
 
-import fs from "fs";
 import path from "path";
 import chalk from "chalk";
 import ora from "ora";
+import FileType, { FileTypeResult } from "file-type";
 
 export default function (): Promise<void> {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
     const spinner = ora("準備影片中...").start();
     const baseDirName = global["baseDirName"];
 
-    if (
-      !fs.existsSync(
-        path.resolve(
-          baseDirName,
-          PROCESS_ENV.get("INPUT_VIDEO_PATH"),
-          PROCESS_ENV.get("INPUT_VIDEO_FILENAME"),
-        ),
-      )
-    ) {
-      spinner.fail(
-        `請確認 ${chalk.yellow(
-          PROCESS_ENV.get("INPUT_VIDEO_FILENAME"),
-        )} 放在路徑 ${chalk.yellow(
-          path.resolve(baseDirName, PROCESS_ENV.get("INPUT_VIDEO_PATH")),
-        )} 下.`,
-      );
-      process.exit(1);
-    }
+    const { mime } = (await FileType.fromFile(
+      path.resolve(
+        baseDirName,
+        PROCESS_ENV.get("INPUT_FILEPATH"),
+        PROCESS_ENV.get("INPUT_FILENAME"),
+      ),
+    )) as FileTypeResult;
+
+    console.log("mime, ", mime);
+
+    /* TODO 調整輸入大小 */
 
     spinner.succeed(`${chalk.green("[準備影片]")} 已完成`);
     resolve();
