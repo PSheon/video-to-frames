@@ -15,7 +15,7 @@ import {
 } from "./helpers";
 
 export default async function (): Promise<void> {
-  console.log(`運行環境 > ${chalk.blue(process.env.NODE_ENV)}`);
+  console.log(`\n🧰 運行環境 > ${chalk.blue(process.env.NODE_ENV)}`);
 
   const spinner = ora("檢查設定參數...").start();
   const baseDirName = path.join(__dirname, "../../../");
