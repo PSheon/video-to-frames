@@ -24,3 +24,10 @@ export interface IValidConfigInput {
   spinner: Ora;
   config: TConfig;
 }
+
+export interface IGetConfigGlobalSettingsInput {
+  spinner: Ora;
+}
+export interface IGetConfigGlobalSettingsOutput {
+  fileMimeType: string;
+}
