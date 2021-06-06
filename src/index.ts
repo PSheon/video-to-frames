@@ -9,13 +9,13 @@ const pipeline = async (): Promise<void> => {
   await setupConfig();
   await setupDependencies();
 
-  /* Preparing - Preparing Video or Image */
+  /* Stage 1 - Preparing Video or Image */
   await preparingInput();
 
-  /* Stage 1 - Split Frames */
+  /* Stage 2 - Split Frames */
   await splitFrames();
 
-  /* Stage 2 - Inference Frame */
+  /* Stage 3 - Inference Frame */
   await inferenceFrame();
 };
 pipeline();

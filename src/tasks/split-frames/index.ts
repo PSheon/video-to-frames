@@ -1,10 +1,9 @@
 import PROCESS_ENV from "config";
 
-import fs from "fs";
 import ora from "ora";
 import path from "path";
 import chalk from "chalk";
-import ffmpeg, { FfprobeStream } from "fluent-ffmpeg";
+import ffmpeg from "fluent-ffmpeg";
 
 export default function (): Promise<void> {
   return new Promise((resolve) => {
@@ -22,11 +21,11 @@ export default function (): Promise<void> {
         spinner.text = `Input is ${data.audio} audio with ${data.video} video"`;
       })
       .on("error", (err) => {
-        spinner.fail(`${chalk.red("[階段一]")} 影片分割失敗: ${err.message}`);
+        spinner.fail(`${chalk.red("[階段二]")} 影片分割失敗: ${err.message}`);
         process.exit(1);
       })
       .on("end", () => {
-        spinner.succeed(`${chalk.green("[階段一]")} 影片分割完成！`);
+        spinner.succeed(`${chalk.green("[階段二]")} 影片分割完成！`);
         resolve();
       })
       .size("640x?")
@@ -40,33 +39,6 @@ export default function (): Promise<void> {
           "stage-split",
           `${PROCESS_ENV.get("SPLIT_FRAME_IMAGE_PREFIX")}_%05d.jpg`,
         ),
-      )
-      .ffprobe(function (err, metadata) {
-        if (err) {
-          spinner.fail(
-            `${chalk.red("[階段一]")} 無法取得影片資訊: ${err.message}`,
-          );
-          process.exit(1);
-        }
-        const videoMetadata = metadata.streams.find(
-          (item) => item.codec_type == "video",
-        ) as FfprobeStream;
-
-        const META_DATA = {
-          duration: videoMetadata.duration,
-          width: videoMetadata.width,
-          height: videoMetadata.height,
-        };
-
-        fs.writeFileSync(
-          path.resolve(
-            baseDirName,
-            "output",
-            "stage-split",
-            "frame_metadata.json",
-          ),
-          JSON.stringify(META_DATA),
-        );
-      });
+      );
   });
 }

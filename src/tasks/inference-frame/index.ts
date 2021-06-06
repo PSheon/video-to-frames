@@ -5,7 +5,7 @@ import { inferencePoseProcess } from "./helpers";
 
 export default function (): Promise<void> {
   return new Promise(async (resolve) => {
-    const spinner = ora(`${chalk.green("[階段二]")} 推理影片中...`).start();
+    const spinner = ora(`${chalk.green("[階段三]")} 推理影片中...`).start();
 
     const startTime = process.hrtime.bigint();
     await inferencePoseProcess({ spinner });
@@ -19,7 +19,7 @@ export default function (): Promise<void> {
       )} 秒`,
     );
 
-    spinner.succeed(`${chalk.green("[階段二]")} 影片推理完成！`);
+    spinner.succeed(`${chalk.green("[階段三]")} 影片推理完成！`);
     resolve();
   });
 }
