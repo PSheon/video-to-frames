@@ -2,14 +2,14 @@
 import { writeFile } from "fs/promises";
 import path from "path";
 
-import loadImage from "./load-image";
-import processResults from "./process-results";
-import saveImage from "./save-image";
-
 import {
   IEfficientPoseInferenceInput,
   IEfficientPoseInferenceOutput,
-} from "../../../../types";
+} from "types";
+
+import loadImage from "./load-image";
+import processResults from "./process-results";
+import saveImage from "./save-image";
 
 export default function ({
   model,

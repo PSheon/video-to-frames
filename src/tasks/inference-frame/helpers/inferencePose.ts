@@ -1,14 +1,13 @@
 import PROCESS_ENV from "config";
 
 import chalk from "chalk";
+import { IInferencePoseInput } from "types";
 
 import blazepose from "./blazepose";
 import efficientpose from "./efficientpose";
 import movenet from "./movenet";
 import posenet from "./posenet";
 import { getModelType } from "./shared";
-
-import { IInferencePoseInput } from "../../../types";
 
 export default function ({ spinner }: IInferencePoseInput): Promise<void> {
   return new Promise(async (resolve) => {

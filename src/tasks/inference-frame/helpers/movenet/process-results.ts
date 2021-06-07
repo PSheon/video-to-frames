@@ -1,5 +1,5 @@
 /* TODO Migrate to ts */
-import { MOVE_NET_BODY_PARTS } from "../../../../constant";
+import { MOVE_NET_BODY_PARTS } from "constant";
 
 export default function (res, img) {
   return new Promise((resolve) => {

@@ -7,8 +7,7 @@ import path from "path";
 
 import tf from "@tensorflow/tfjs-node";
 import { createCanvas, Image } from "canvas";
-
-import { IPoseNetInferenceOutput } from "../../../../types";
+import { IPoseNetInferenceOutput } from "types";
 
 export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
   return new Promise(async (resolve) => {

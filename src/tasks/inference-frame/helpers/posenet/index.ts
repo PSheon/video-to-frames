@@ -2,10 +2,9 @@ import { readdir } from "fs/promises";
 import path from "path";
 
 import chalk from "chalk";
+import { IPoseNetInferenceInput } from "types";
 
 import inferencePose from "./inferencePose";
-
-import { IPoseNetInferenceInput } from "../../../../types";
 
 export default function ({ spinner }: IPoseNetInferenceInput): Promise<void> {
   return new Promise(async (resolve) => {
