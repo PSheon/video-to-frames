@@ -1,12 +1,20 @@
 import { Ora } from "ora";
 
 export type TConfig = {
-  INPUT_VIDEO_PATH: string;
-  INPUT_VIDEO_FILENAME: string;
+  /* 全域設定 */
+  DELETE_PREVIOUS_OUTPUT: boolean;
+
+  /* 輸入設定 */
+  INPUT_FILEPATH: string;
+  INPUT_FILENAME: string;
+
+  /* 分割圖片設定 */
+  SPLIT_FRAME_IMAGE_PREFIX: string;
+  INPUT_VIDEO_START_TIME: string;
+  INPUT_VIDEO_DURATION: string;
   INPUT_VIDEO_FRAME_SAMPLING: number;
 
-  SPLIT_FRAME_IMAGE_PREFIX: string;
-
+  /* 模型設定 */
   MODEL_NAME:
     | "posenet"
     | "efficientpose-i-lite"
@@ -22,4 +30,16 @@ export type TConfig = {
 export interface IValidConfigInput {
   spinner: Ora;
   config: TConfig;
+}
+
+export interface ICheckConfigInput {
+  spinner: Ora;
+  baseDirName: string;
+}
+export interface IGetConfigGlobalSettingsInput {
+  spinner: Ora;
+  baseDirName: string;
+}
+export interface IGetConfigGlobalSettingsOutput {
+  fileMimeType: string;
 }

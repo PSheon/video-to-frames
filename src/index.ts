@@ -1,21 +1,21 @@
 import setupConfig from "./tasks/setup-config";
 import setupDependencies from "./tasks/setup-dependencies";
-import preparingVideo from "./tasks/preparing-video";
+import preparingInput from "./tasks/preparing-input";
 import splitFrames from "./tasks/split-frames";
 import inferenceFrame from "./tasks/inference-frame";
 
 const pipeline = async (): Promise<void> => {
   /* Environment Setup */
-  setupConfig();
+  await setupConfig();
   await setupDependencies();
 
-  /* Preparing - Preparing Video */
-  await preparingVideo();
+  /* Stage 1 - Preparing Video or Image */
+  await preparingInput();
 
-  /* Stage 1 - Split Frames */
+  /* Stage 2 - Split Frames */
   await splitFrames();
 
-  /* Stage 2 - Inference Frame */
+  /* Stage 3 - Inference Frame */
   await inferenceFrame();
 };
 pipeline();

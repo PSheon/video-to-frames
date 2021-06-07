@@ -8,10 +8,13 @@ const ajv = new Ajv({ allErrors: true });
 
 const CONFIG_SCHEMA: JTDSchemaType<TConfig> = {
   properties: {
-    INPUT_VIDEO_PATH: { type: "string" },
-    INPUT_VIDEO_FILENAME: { type: "string" },
-    INPUT_VIDEO_FRAME_SAMPLING: { type: "int32" },
+    DELETE_PREVIOUS_OUTPUT: { type: "boolean" },
+    INPUT_FILEPATH: { type: "string" },
+    INPUT_FILENAME: { type: "string" },
     SPLIT_FRAME_IMAGE_PREFIX: { type: "string" },
+    INPUT_VIDEO_START_TIME: { type: "string" },
+    INPUT_VIDEO_DURATION: { type: "string" },
+    INPUT_VIDEO_FRAME_SAMPLING: { type: "int32" },
     MODEL_NAME: {
       enum: [
         "posenet",

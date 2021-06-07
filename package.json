@@ -1,6 +1,6 @@
 {
   "name": "video-to-frames",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "影片分割工具",
   "author": "PSheon",
   "scripts": {
@@ -10,7 +10,9 @@
     "start": "NODE_ENV=production node dist/index.js",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "docker": "docker run -v $(pwd)/input:/opt/input -v $(pwd)/output/stage-split:/opt/output/stage-split -v $(pwd)/output/stage-inference:/opt/output/stage-inference --name video-to-frames video-to-frames"
+    "docker:build": "docker build -t video-to-frames .",
+    "docker:init": "docker run -v $(pwd)/input:/opt/input -v $(pwd)/output/stage-split:/opt/output/stage-split -v $(pwd)/output/stage-inference:/opt/output/stage-inference --name video-to-frames video-to-frames",
+    "docker:run": "docker start -i video-to-frames"
   },
   "dependencies": {
     "@tensorflow-models/posenet": "^2.2.2",
@@ -21,6 +23,7 @@
     "chalk": "^4.1.1",
     "config": "^3.3.6",
     "ffbinaries": "^1.1.4",
+    "file-type": "^16.5.0",
     "fluent-ffmpeg": "^2.1.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",

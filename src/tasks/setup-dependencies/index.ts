@@ -2,7 +2,8 @@ import fs from "fs";
 import path from "path";
 import chalk from "chalk";
 import ora from "ora";
-import rimraf from "rimraf";
+
+import ffmpeg from "fluent-ffmpeg";
 
 import { installFFMPEG } from "./helpers";
 
@@ -12,13 +13,7 @@ export default async function (): Promise<void> {
   const spinner = ora("檢查相依套件中...").start();
   const baseDirName = global["baseDirName"];
 
-  /* 刪除暫存文件 */
-  rimraf.sync(path.resolve(baseDirName, "output", "stage-split/*.jpg"));
-  rimraf.sync(path.resolve(baseDirName, "output", "stage-split/*.json"));
-  rimraf.sync(path.resolve(baseDirName, "output", "stage-inference/*.jpg"));
-  rimraf.sync(path.resolve(baseDirName, "output", "stage-inference/*.json"));
-
-  /* FFMPEG */
+  /* 檢查 FFMPEG 存在 */
   if (!fs.existsSync(path.resolve(baseDirName, "ffmpeg"))) {
     fs.mkdirSync(path.resolve(baseDirName, "ffmpeg"));
   }
@@ -30,6 +25,13 @@ export default async function (): Promise<void> {
     spinner.text = `安裝 ${chalk.yellow("ffprobe")} ...`;
     await installFFMPEG({ spinner, baseDirName });
   }
+
+  ffmpeg.setFfmpegPath(
+    path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffmpeg")),
+  );
+  ffmpeg.setFfprobePath(
+    path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffprobe")),
+  );
 
   spinner.succeed(`${chalk.green("[相依套件]")} 已安裝`);
 }
