@@ -5,7 +5,7 @@ import { inferencePoseProcess, getInferenceOutputDirname } from "./helpers";
 
 export default function (): Promise<void> {
   return new Promise(async (resolve) => {
-    const spinner = ora(`${chalk.green("[階段三]")} 推理影片中...`).start();
+    const spinner = ora(`${chalk.green("[階段三]")} 肢體推理中...`).start();
 
     const startTime = process.hrtime.bigint();
     await inferencePoseProcess({ spinner });
@@ -20,7 +20,7 @@ export default function (): Promise<void> {
     );
     console.log(`📁 輸出資料夾 > ${chalk.green(getInferenceOutputDirname())}`);
 
-    spinner.succeed(`${chalk.green("[階段三]")} 影片推理完成！`);
+    spinner.succeed(`${chalk.green("[階段三]")} 肢體推理完成！`);
     resolve();
   });
 }
