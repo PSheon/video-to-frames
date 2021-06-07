@@ -30,6 +30,8 @@ export default function ({ spinner }: ISplitVideoToFramesInput): Promise<void> {
       .size("640x?")
       .aspect("1:1")
       .autopad()
+      .setStartTime(PROCESS_ENV.get("INPUT_VIDEO_START_TIME"))
+      .duration(PROCESS_ENV.get("INPUT_VIDEO_DURATION"))
       .fps(PROCESS_ENV.get("INPUT_VIDEO_FRAME_SAMPLING"))
       .save(
         path.resolve(
