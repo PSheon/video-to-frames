@@ -4,7 +4,7 @@ export default {
 
   /* 輸入設定 */
   INPUT_FILEPATH: "input",
-  INPUT_FILENAME: "input.mp4",
+  INPUT_FILENAME: "sample.mp4",
 
   /* 分割圖片設定 */
   SPLIT_FRAME_IMAGE_PREFIX: "frame",
