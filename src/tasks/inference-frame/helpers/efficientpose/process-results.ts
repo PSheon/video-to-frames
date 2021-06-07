@@ -38,7 +38,7 @@ export default function (res, img) {
     // body parts are basically just a stack of 2d tensors
     const stack = squeeze.unstack(2);
     tf.dispose(squeeze);
-    let parts: any = [];
+    const parts: any = [];
     // process each unstacked tensor as a separate body part
     for (let id = 0; id < stack.length; id++) {
       // actual processing to get coordinates and score

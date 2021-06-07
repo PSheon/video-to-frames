@@ -1,13 +1,14 @@
 /* TODO Migrate to ts */
-import canvas from "canvas";
-import path from "path";
 import fs from "fs";
+import path from "path";
+
+import canvas from "canvas";
 
 export default function (res, img): Promise<void> {
   return new Promise(async (resolve, reject) => {
     const c = new canvas.Canvas(img.inputShape[1], img.inputShape[0]);
     const ctx = c.getContext("2d");
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
 
     // load and draw original image
     const original = await canvas.loadImage(
@@ -74,7 +75,9 @@ export default function (res, img): Promise<void> {
       resolve();
     });
     out.on("error", (err) => {
+      /* tslint:disable:no-console */
       console.log("err, ", err);
+      /* tslint:enable:no-console */
       reject();
     });
     const stream = c.createJPEGStream({

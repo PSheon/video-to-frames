@@ -1,21 +1,23 @@
 import PROCESS_ENV from "config";
 
-import chalk from "chalk";
 import path from "path";
-import moment from "moment";
-import ora from "ora";
 
+import chalk from "chalk";
+import moment from "moment";
 import "moment-timezone";
 import "moment/locale/zh-tw";
+import ora from "ora";
 
 import {
-  validateConfig,
   checkConfig,
   getConfigGlobalSettings,
+  validateConfig,
 } from "./helpers";
 
 export default async function (): Promise<void> {
+  /* tslint:disable:no-console */
   console.log(`\n🧰 運行環境 > ${chalk.blue(process.env.NODE_ENV)}`);
+  /* tslint:enable:no-console */
 
   const spinner = ora("檢查設定參數...").start();
   const baseDirName = path.join(__dirname, "../../../");
@@ -33,8 +35,8 @@ export default async function (): Promise<void> {
   moment.tz.setDefault("Asia/Taipei");
 
   /* Global */
-  global["baseDirName"] = baseDirName;
-  global["fileMimeType"] = fileMimeType;
+  global.baseDirName = baseDirName;
+  global.fileMimeType = fileMimeType;
 
   spinner.succeed(`${chalk.green("[環境設定]")} 格式正確`);
 }

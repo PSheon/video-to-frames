@@ -1,10 +1,11 @@
 import PROCESS_ENV from "config";
 
-import fs from "fs";
-import path from "path";
-import { writeFile } from "fs/promises";
-import tf from "@tensorflow/tfjs-node";
 import posenet from "@tensorflow-models/posenet";
+import { createWriteStream } from "fs";
+import { writeFile } from "fs/promises";
+import path from "path";
+
+import tf from "@tensorflow/tfjs-node";
 import { createCanvas, Image } from "canvas";
 
 import { IPoseNetInferenceOutput } from "../../../../types";
@@ -12,7 +13,7 @@ import { IPoseNetInferenceOutput } from "../../../../types";
 export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
   return new Promise(async (resolve) => {
     const net = await posenet.load();
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
     const bodyObj = {};
     const img = new Image();
 
@@ -31,7 +32,7 @@ export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
     });
     const t1 = process.hrtime.bigint();
     const inferenceTime = Math.round(
-      parseInt((t1 - t0).toString()) / 1000 / 1000,
+      parseInt((t1 - t0).toString(), 10) / 1000 / 1000,
     );
 
     for (const keypoint of pose.keypoints) {
@@ -56,10 +57,10 @@ export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
 
     const t2 = process.hrtime.bigint();
     const processTime = Math.round(
-      parseInt((t2 - t1).toString()) / 1000 / 1000,
+      parseInt((t2 - t1).toString(), 10) / 1000 / 1000,
     );
 
-    const out = fs.createWriteStream(
+    const out = createWriteStream(
       path.join(baseDirName, "output", "stage-inference", frame),
     );
     const stream = canvas.createJPEGStream();

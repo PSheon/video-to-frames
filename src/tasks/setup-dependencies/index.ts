@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
-import chalk from "chalk";
-import ora from "ora";
 
+import chalk from "chalk";
 import ffmpeg from "fluent-ffmpeg";
+import ora from "ora";
 
 import { installFFMPEG } from "./helpers";
 
@@ -11,7 +11,7 @@ import { installFFMPEG } from "./helpers";
 /* eslint complexity: ["error", 15] */
 export default async function (): Promise<void> {
   const spinner = ora("檢查相依套件中...").start();
-  const baseDirName = global["baseDirName"];
+  const baseDirName = global.baseDirName;
 
   /* 檢查 FFMPEG 存在 */
   if (!fs.existsSync(path.resolve(baseDirName, "ffmpeg"))) {

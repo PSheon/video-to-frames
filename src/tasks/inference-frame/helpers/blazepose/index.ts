@@ -1,5 +1,6 @@
 import { readdir } from "fs/promises";
 import path from "path";
+
 import chalk from "chalk";
 
 import { IBlazePoseInferenceInput } from "../../../../types";

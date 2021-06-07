@@ -2,8 +2,8 @@
 import { writeFile } from "fs/promises";
 import path from "path";
 
-import processResults from "./process-results";
 import loadImage from "./load-image";
+import processResults from "./process-results";
 import saveImage from "./save-image";
 
 import {
@@ -17,21 +17,21 @@ export default function ({
   frame,
 }: IEfficientPoseInferenceInput): Promise<IEfficientPoseInferenceOutput> {
   return new Promise(async (resolve) => {
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
     const img: any = await loadImage(frame, inputSize);
 
     const t0 = process.hrtime.bigint();
     const res = model.execute(img.tensor);
     const t1 = process.hrtime.bigint();
     const inferenceTime = Math.round(
-      parseInt((t1 - t0).toString()) / 1000 / 1000,
+      parseInt((t1 - t0).toString(), 10) / 1000 / 1000,
     );
 
     const results = await processResults(res, img);
 
     const t2 = process.hrtime.bigint();
     const processTime = Math.round(
-      parseInt((t2 - t1).toString()) / 1000 / 1000,
+      parseInt((t2 - t1).toString(), 10) / 1000 / 1000,
     );
 
     await saveImage(results, img);

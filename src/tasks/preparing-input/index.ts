@@ -6,7 +6,7 @@ import { getMetaData } from "./helpers";
 export default function (): Promise<void> {
   return new Promise(async (resolve) => {
     const spinner = ora("整理輸入文件中...").start();
-    const fileMimeType = global["fileMimeType"];
+    const fileMimeType = global.fileMimeType;
 
     /* TODO 調整文件流程 */
     if (fileMimeType.includes("video")) {

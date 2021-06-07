@@ -1,7 +1,8 @@
 import PROCESS_ENV from "config";
 
-import chalk from "chalk";
 import path from "path";
+
+import chalk from "chalk";
 import FileType, { FileTypeResult } from "file-type";
 
 import {

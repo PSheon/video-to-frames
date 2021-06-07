@@ -6,7 +6,7 @@ export default function (res, img) {
     const data = res.arraySync();
     res.dispose();
     const kpt = data[0][0];
-    let parts: any = [];
+    const parts: any = [];
     for (let i = 0; i < kpt.length; i++) {
       const part = {
         id: i,

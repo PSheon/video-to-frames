@@ -1,19 +1,21 @@
 /* TODO Migrate to ts */
 import { readdir } from "fs/promises";
-import chalk from "chalk";
 import path from "path";
 
+import chalk from "chalk";
+
 import inferencePose from "./inferencePose";
+
 import { getMoveNetModelPath } from "../shared";
 
 const tf = require("@tensorflow/tfjs-node");
 
 export default function ({ spinner, modelName }): Promise<void> {
   return new Promise(async (resolve) => {
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
 
     const model = await tf.loadGraphModel(getMoveNetModelPath(modelName));
-    const inputs: any[] = model.modelSignature["inputs"];
+    const inputs: any[] = model.modelSignature.inputs;
     const inputSize = Object.values(inputs)[0].tensorShape.dim[2].size;
 
     const frames = await readdir(

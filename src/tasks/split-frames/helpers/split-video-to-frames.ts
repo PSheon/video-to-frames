@@ -1,5 +1,7 @@
 import PROCESS_ENV from "config";
+
 import path from "path";
+
 import chalk from "chalk";
 import ffmpeg from "fluent-ffmpeg";
 
@@ -7,7 +9,7 @@ import { ISplitVideoToFramesInput } from "../../../types";
 
 export default function ({ spinner }: ISplitVideoToFramesInput): Promise<void> {
   return new Promise((resolve) => {
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
 
     ffmpeg(
       path.resolve(

@@ -1,8 +1,8 @@
 import Ajv, { JTDSchemaType } from "ajv/dist/jtd";
-
 import chalk from "chalk";
+import { IValidConfigInput, TConfig } from "types";
+
 import localizeError from "./localize-error";
-import { TConfig, IValidConfigInput } from "types";
 
 const ajv = new Ajv({ allErrors: true });
 
@@ -37,7 +37,9 @@ export default function ({ spinner, config }: IValidConfigInput): TConfig {
   if (validate.errors) {
     spinner.fail(`${chalk.red("[環境設定]")} 設定內容錯誤：`);
     const errorMessage = localizeError(validate.errors);
+    /* tslint:disable:no-console */
     console.log(errorMessage);
+    /* tslint:enable:no-console */
 
     process.exit(1);
   } else {
