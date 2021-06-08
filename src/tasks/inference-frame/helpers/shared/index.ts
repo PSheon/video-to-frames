@@ -12,6 +12,13 @@ const getModelType = (modelName: string): string => {
   return "posenet";
 };
 
+const getBlazePoseModelPath = (modelName: string): string => {
+  return `file://src/model/blazepose/${String(modelName).replace(
+    "blazepose-",
+    "",
+  )}/blazepose.json`;
+};
+
 const getEfficientPoseModelPath = (modelName: string): string => {
   return `file://src/model/efficientpose/${String(modelName).replace(
     "efficientpose-",
@@ -26,4 +33,9 @@ const getMoveNetModelPath = (modelName: string): string => {
   )}/movenet.json`;
 };
 
-export { getModelType, getEfficientPoseModelPath, getMoveNetModelPath };
+export {
+  getModelType,
+  getBlazePoseModelPath,
+  getEfficientPoseModelPath,
+  getMoveNetModelPath,
+};

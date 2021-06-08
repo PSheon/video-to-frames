@@ -11,8 +11,13 @@ export interface IPoseNetInferenceOutput {
   processTime: number;
 }
 export interface IBlazePoseInferenceInput {
-  spinner: Ora;
-  modelName: string;
+  model: any;
+  modelName: "full" | "upper";
+  frameName: string;
+}
+export interface IBlazePoseInferenceOutput {
+  inferenceTime: number;
+  processTime: number;
 }
 export interface IEfficientPoseInferenceInput {
   model: any;
