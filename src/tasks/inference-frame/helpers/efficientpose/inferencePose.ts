@@ -14,11 +14,11 @@ import saveImage from "./save-image";
 export default function ({
   model,
   inputSize,
-  frame,
+  frameName,
 }: IEfficientPoseInferenceInput): Promise<IEfficientPoseInferenceOutput> {
   return new Promise(async (resolve) => {
     const baseDirName = global.baseDirName;
-    const img: any = await loadImage(frame, inputSize);
+    const img: any = await loadImage(frameName, inputSize);
 
     const t0 = process.hrtime.bigint();
     const res = model.execute(img.tensor);
@@ -41,7 +41,7 @@ export default function ({
         baseDirName,
         "output",
         "stage-inference",
-        frame.replace(".jpg", ".json"),
+        frameName.replace(".jpg", ".json"),
       ),
       JSON.stringify(results),
     );

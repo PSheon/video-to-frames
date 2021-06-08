@@ -4,7 +4,7 @@ import path from "path";
 
 import canvas from "canvas";
 
-export default function (res, img): Promise<void> {
+export default function (results, img): Promise<void> {
   return new Promise(async (resolve, reject) => {
     const c = new canvas.Canvas(img.inputShape[1], img.inputShape[0]);
     const ctx = c.getContext("2d");
@@ -12,18 +12,16 @@ export default function (res, img): Promise<void> {
 
     // load and draw original image
     const original = await canvas.loadImage(
-      path.resolve(baseDirName, "output", "stage-split", img.fileName),
+      path.resolve(baseDirName, "output", "stage-split", img.frameName),
     );
-    // const original = await canvas.loadImage(img.fileName)
     ctx.drawImage(original, 0, 0, c.width, c.height);
-    // const fontSize = Math.trunc(c.width / 50);
     const fontSize = Math.round((c.width * c.height) ** (1 / 2) / 80);
     ctx.lineWidth = 2;
     ctx.strokeStyle = "white";
     ctx.font = `${fontSize}px "Segoe UI"`;
 
     // draw all detected objects
-    for (const obj of res) {
+    for (const obj of results) {
       ctx.fillStyle = "black";
       ctx.fillText(
         `${Math.round(100 * obj.score)}% ${obj.label}`,
@@ -43,7 +41,7 @@ export default function (res, img): Promise<void> {
       ctx.strokeStyle = color;
       ctx.beginPath();
       for (let i = 0; i < parts.length; i++) {
-        const part = res.find((a) => a.label === parts[i]);
+        const part = results.find((a) => a.label === parts[i]);
         if (part) {
           if (i === 0) ctx.moveTo(part.x, part.y);
           else ctx.lineTo(part.x, part.y);
@@ -68,7 +66,7 @@ export default function (res, img): Promise<void> {
       baseDirName,
       "output",
       "stage-inference",
-      img.fileName,
+      img.frameName,
     );
     const out = fs.createWriteStream(outImage);
     out.on("finish", () => {

@@ -22,9 +22,19 @@ export interface IBlazePoseInferenceOutput {
 export interface IEfficientPoseInferenceInput {
   model: any;
   inputSize: any;
-  frame: any;
+  frameName: string;
 }
 export interface IEfficientPoseInferenceOutput {
+  inferenceTime: number;
+  processTime: number;
+}
+
+export interface IMoveNetInferenceInput {
+  model: any;
+  inputSize: any;
+  frameName: string;
+}
+export interface IMoveNetInferenceOutput {
   inferenceTime: number;
   processTime: number;
 }

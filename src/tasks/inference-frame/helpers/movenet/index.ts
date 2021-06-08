@@ -24,8 +24,8 @@ export default function ({ spinner, modelName }): Promise<void> {
 
     let skipFrames = 0;
 
-    for (const [inferenceIndex, frame] of frames.entries()) {
-      if (!frame.includes(".jpg")) {
+    for (const [inferenceIndex, frameName] of frames.entries()) {
+      if (!frameName.includes(".jpg")) {
         skipFrames++;
         continue;
       }
@@ -33,7 +33,7 @@ export default function ({ spinner, modelName }): Promise<void> {
       const { inferenceTime, processTime } = await inferencePose({
         model,
         inputSize,
-        frame,
+        frameName,
       });
 
       spinner.text = `🔍 推理第 ${chalk.green(
