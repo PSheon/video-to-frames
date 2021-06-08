@@ -1,6 +1,6 @@
 import path from "path";
 
-import inferencePoseProcess from "./inferencePose";
+import inferencePoseProcess from "./inference-pose";
 
 const getInferenceOutputDirname = (): string => {
   const baseDirName = global.baseDirName;

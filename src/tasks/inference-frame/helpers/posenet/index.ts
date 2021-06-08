@@ -4,7 +4,7 @@ import path from "path";
 import chalk from "chalk";
 import { IPoseNetInferenceInput } from "types";
 
-import inferencePose from "./inferencePose";
+import inferencePose from "./inference-pose";
 
 export default function ({ spinner }: IPoseNetInferenceInput): Promise<void> {
   return new Promise(async (resolve) => {

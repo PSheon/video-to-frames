@@ -4,7 +4,7 @@ import path from "path";
 
 import chalk from "chalk";
 
-import inferencePose from "./inferencePose";
+import inferencePose from "./inference-pose";
 
 import { getEfficientPoseModelPath } from "../shared";
 
