@@ -23,10 +23,13 @@ const CONFIG_SCHEMA: JTDSchemaType<TConfig> = {
         "efficientpose-iv",
         "movenet-lightning",
         "movenet-thunder",
+        "blazepose-full",
+        "blazepose-upper",
       ],
     },
     POSENET_INFERENCE_FLIP_HORIZONTAL: { type: "boolean" },
     EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD: { type: "float32" },
+    BLAZEPOSE_MODEL_MIN_SCORE_THRESHOLD: { type: "float32" },
   },
 };
 
