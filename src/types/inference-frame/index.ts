@@ -3,13 +3,15 @@ import { Ora } from "ora";
 export interface IInferencePoseInput {
   spinner: Ora;
 }
+
 export interface IPoseNetInferenceInput {
-  spinner: Ora;
+  frameName: string;
 }
 export interface IPoseNetInferenceOutput {
   inferenceTime: number;
   processTime: number;
 }
+
 export interface IBlazePoseInferenceInput {
   model: any;
   modelName: "full" | "upper";

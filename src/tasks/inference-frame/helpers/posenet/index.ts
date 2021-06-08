@@ -2,11 +2,10 @@ import { readdir } from "fs/promises";
 import path from "path";
 
 import chalk from "chalk";
-import { IPoseNetInferenceInput } from "types";
 
 import inferencePose from "./inference-pose";
 
-export default function ({ spinner }: IPoseNetInferenceInput): Promise<void> {
+export default function ({ spinner }): Promise<void> {
   return new Promise(async (resolve) => {
     const baseDirName = global.baseDirName;
     const frames = await readdir(
@@ -15,13 +14,15 @@ export default function ({ spinner }: IPoseNetInferenceInput): Promise<void> {
 
     let skipFrames = 0;
 
-    for (const [inferenceIndex, frame] of frames.entries()) {
-      if (!frame.includes(".jpg")) {
+    for (const [inferenceIndex, frameName] of frames.entries()) {
+      if (!frameName.includes(".jpg")) {
         skipFrames++;
         continue;
       }
 
-      const { inferenceTime, processTime } = await inferencePose({ frame });
+      const { inferenceTime, processTime } = await inferencePose({
+        frameName,
+      });
 
       spinner.text = `🔍 推理第 ${chalk.green(
         `${inferenceIndex + skipFrames} / ${frames.length}`,

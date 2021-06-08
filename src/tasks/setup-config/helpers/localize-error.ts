@@ -4,7 +4,7 @@ import chalk from "chalk";
 export default function (errors: ErrorObject[]): void | string {
   if (!(errors && errors.length)) return;
   for (const e of errors) {
-    let out;
+    let out = "";
     switch (e.keyword) {
       case "discriminator":
         switch (e.params.error) {
@@ -16,9 +16,9 @@ export default function (errors: ErrorObject[]): void | string {
             break;
           default:
             out = "";
-            const types = e.params.type;
-            const nullable = e.params.nullable ? "/null" : "";
-            out += "應該是 " + (types + nullable) + " 類型";
+            const _t = e.params.type as string;
+            const _n = e.params.nullable ? "/null" : "";
+            out += "應該是 " + (_t + _n) + " 類型";
         }
         break;
       case "enum":
@@ -34,16 +34,16 @@ export default function (errors: ErrorObject[]): void | string {
             break;
           default:
             out = "";
-            const types = e.params.type;
-            const nullable = e.params.nullable ? "/null" : "";
-            out += "應該是 " + (types + nullable) + " 類型";
+            const _t = e.params.type as string;
+            const _n = e.params.nullable ? "/null" : "";
+            out += "應該是 " + (_t + _n) + " 類型";
         }
         break;
       case "type":
       case "elements":
       case "values":
         out = "";
-        const t = e.params.type;
+        const t = e.params.type as string;
         const n = e.params.nullable ? "/null" : "";
         out += "應該是 " + (t + n) + " 類型";
         break;

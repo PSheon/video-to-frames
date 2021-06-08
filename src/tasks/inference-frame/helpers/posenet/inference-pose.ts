@@ -7,16 +7,18 @@ import path from "path";
 
 import tf from "@tensorflow/tfjs-node";
 import { createCanvas, Image } from "canvas";
-import { IPoseNetInferenceOutput } from "types";
+import { IPoseNetInferenceInput, IPoseNetInferenceOutput } from "types";
 
-export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
+export default function ({
+  frameName,
+}: IPoseNetInferenceInput): Promise<IPoseNetInferenceOutput> {
   return new Promise(async (resolve) => {
     const net = await posenet.load();
     const baseDirName = global.baseDirName;
     const bodyObj = {};
     const img = new Image();
 
-    img.src = `${baseDirName}/output/stage-split/${frame}`;
+    img.src = `${baseDirName}/output/stage-split/${frameName}`;
 
     const canvas = createCanvas(img.width, img.height);
     const ctx = canvas.getContext("2d");
@@ -60,7 +62,7 @@ export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
     );
 
     const out = createWriteStream(
-      path.join(baseDirName, "output", "stage-inference", frame),
+      path.join(baseDirName, "output", "stage-inference", frameName),
     );
     const stream = canvas.createJPEGStream();
     stream.pipe(out);
@@ -70,7 +72,7 @@ export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
         baseDirName,
         "output",
         "stage-inference",
-        frame.replace(".jpg", ".json"),
+        frameName.replace(".jpg", ".json"),
       ),
       JSON.stringify(bodyObj),
     );

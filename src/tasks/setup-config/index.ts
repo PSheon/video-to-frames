@@ -7,6 +7,7 @@ import moment from "moment";
 import "moment-timezone";
 import "moment/locale/zh-tw";
 import ora from "ora";
+import { TConfig } from "types";
 
 import {
   checkConfig,
@@ -23,7 +24,7 @@ export default async function (): Promise<void> {
   const baseDirName = path.join(__dirname, "../../../");
 
   /* Check all config correctly */
-  validateConfig({ spinner, config: PROCESS_ENV.util.toObject() });
+  validateConfig({ spinner, config: PROCESS_ENV.util.toObject() as TConfig });
   checkConfig({ spinner, baseDirName });
   const { fileMimeType } = await getConfigGlobalSettings({
     spinner,
