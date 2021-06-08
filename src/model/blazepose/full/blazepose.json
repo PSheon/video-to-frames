@@ -7776,7 +7776,7 @@
   },
   "weightsManifest": [
     {
-      "paths": ["blazepose-full.bin"],
+      "paths": ["blazepose.bin"],
       "weights": [
         {
           "name": "Conv2D_73/filter",
