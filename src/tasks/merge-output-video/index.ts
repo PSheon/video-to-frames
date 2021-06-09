@@ -1,7 +1,11 @@
 import chalk from "chalk";
 import ora from "ora";
 
-import { getMergeOutputDirname, mergeFramesToVideo } from "./helpers";
+import {
+  getMergeOutputDirname,
+  mergeFramesToVideo,
+  mergeInferenceJson,
+} from "./helpers";
 
 export default function (): Promise<void> {
   return new Promise(async (resolve) => {
@@ -12,6 +16,7 @@ export default function (): Promise<void> {
     if (inputMimeType.includes("video")) {
       await mergeFramesToVideo({ spinner });
     }
+    await mergeInferenceJson();
     const endTime = process.hrtime.bigint();
 
     spinner.stopAndPersist({
