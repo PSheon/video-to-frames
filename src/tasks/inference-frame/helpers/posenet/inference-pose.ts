@@ -1,13 +1,14 @@
 import PROCESS_ENV from "config";
 
-import posenet from "@tensorflow-models/posenet";
 import { createWriteStream } from "fs";
 import { writeFile } from "fs/promises";
 import path from "path";
 
-import tf from "@tensorflow/tfjs-node";
 import { createCanvas, Image } from "canvas";
 import { IPoseNetInferenceInput, IPoseNetInferenceOutput } from "types";
+
+const tf = require("@tensorflow/tfjs-node");
+const posenet = require("@tensorflow-models/posenet");
 
 export default function ({
   frameName,
