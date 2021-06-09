@@ -14,16 +14,19 @@ export default function (): Promise<void> {
     }
     const endTime = process.hrtime.bigint();
 
-    /* tslint:disable:no-console */
-    console.log(
-      `\n🎉 生成影片總耗時 ${chalk.green(
+    spinner.stopAndPersist({
+      text: `生成影片總耗時 ${chalk.green(
         Math.round(
           parseInt((endTime - startTime).toString(), 10) / 1000 / 1000 / 1000,
         ),
       )} 秒`,
-    );
-    console.log(`📁 輸出資料夾 > ${chalk.green(getMergeOutputDirname())}`);
-    /* tslint:enable:no-console */
+      symbol: "🎬",
+    });
+    spinner.stopAndPersist({
+      text: `輸出資料夾 > ${chalk.green(getMergeOutputDirname())}`,
+      symbol: "📁",
+    });
+    spinner.succeed(`${chalk.green("[階段四]")} 生成影片完成`);
 
     resolve();
   });

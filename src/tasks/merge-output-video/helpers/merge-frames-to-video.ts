@@ -22,7 +22,6 @@ export default function ({ spinner }: IMergeFramesToVideoInput): Promise<void> {
         process.exit(1);
       })
       .on("end", () => {
-        spinner.succeed(`${chalk.green("[階段四]")} 生成影片完成！`);
         resolve();
       })
       .fps(PROCESS_ENV.get("INPUT_VIDEO_FRAME_SAMPLING"))

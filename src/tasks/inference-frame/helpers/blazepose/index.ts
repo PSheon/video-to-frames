@@ -2,11 +2,9 @@
 import { readdir } from "fs/promises";
 import path from "path";
 
-import chalk from "chalk";
-
 import inferencePose from "./inference-pose";
 
-import { getBlazePoseModelPath } from "../shared";
+import { generateInferenceHintText, getBlazePoseModelPath } from "../shared";
 
 const tf = require("@tensorflow/tfjs-node");
 
@@ -34,11 +32,13 @@ export default function ({ spinner, modelName }): Promise<void> {
         frameName,
       });
 
-      spinner.text = `🔍 推理第 ${chalk.green(
-        `${inferenceIndex + skipFrames} / ${frames.length}`,
-      )} 張圖片，跳過 ${chalk.yellow(skipFrames)} 張，花費 ${chalk.green(
+      spinner.text = generateInferenceHintText(
+        inferenceIndex,
+        skipFrames,
+        frames.length,
         inferenceTime,
-      )} 毫秒，解構 ${chalk.green(processTime)} 毫秒`;
+        processTime,
+      );
     }
 
     resolve();
