@@ -6,13 +6,13 @@ import { getMetaData } from "./helpers";
 export default function (): Promise<void> {
   return new Promise(async (resolve) => {
     const spinner = ora("整理輸入文件中...").start();
-    const fileMimeType = global.fileMimeType;
+    const inputMimeType = global.inputMimeType;
 
     /* TODO 調整文件流程 */
-    if (fileMimeType.includes("video")) {
+    if (inputMimeType.includes("video")) {
       await getMetaData({ spinner });
     }
-    if (fileMimeType.includes("image")) {
+    if (inputMimeType.includes("image")) {
       await getMetaData({ spinner });
     }
 

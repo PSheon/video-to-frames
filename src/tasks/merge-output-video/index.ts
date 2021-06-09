@@ -6,10 +6,10 @@ import { getMergeOutputDirname, mergeFramesToVideo } from "./helpers";
 export default function (): Promise<void> {
   return new Promise(async (resolve) => {
     const spinner = ora("生成影片中...").start();
-    const fileMimeType = global.fileMimeType;
+    const inputMimeType = global.inputMimeType;
 
     const startTime = process.hrtime.bigint();
-    if (fileMimeType.includes("video")) {
+    if (inputMimeType.includes("video")) {
       await mergeFramesToVideo({ spinner });
     }
     const endTime = process.hrtime.bigint();

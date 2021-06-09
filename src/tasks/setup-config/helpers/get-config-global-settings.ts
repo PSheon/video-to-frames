@@ -14,14 +14,14 @@ export default async function ({
   baseDirName,
 }: IGetConfigGlobalSettingsInput): Promise<IGetConfigGlobalSettingsOutput> {
   /* check input are image or video */
-  const { mime: fileMimeType } = (await FileType.fromFile(
+  const { mime: inputMimeType } = (await FileType.fromFile(
     path.resolve(
       baseDirName,
       PROCESS_ENV.get("INPUT_FILEPATH"),
       PROCESS_ENV.get("INPUT_FILENAME"),
     ),
   )) as FileTypeResult;
-  if (!fileMimeType.includes("image") && !fileMimeType.includes("video")) {
+  if (!inputMimeType.includes("image") && !inputMimeType.includes("video")) {
     spinner.fail(
       `請確認 ${chalk.yellow(
         PROCESS_ENV.get("INPUT_FILENAME"),
@@ -31,6 +31,6 @@ export default async function ({
   }
 
   return {
-    fileMimeType,
+    inputMimeType,
   };
 }

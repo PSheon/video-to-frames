@@ -44,5 +44,5 @@ export interface IGetConfigGlobalSettingsInput {
   baseDirName: string;
 }
 export interface IGetConfigGlobalSettingsOutput {
-  fileMimeType: string;
+  inputMimeType: string;
 }

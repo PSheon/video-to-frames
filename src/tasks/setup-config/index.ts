@@ -26,7 +26,7 @@ export default async function (): Promise<void> {
   /* Check all config correctly */
   validateConfig({ spinner, config: PROCESS_ENV.util.toObject() as TConfig });
   checkConfig({ spinner, baseDirName });
-  const { fileMimeType } = await getConfigGlobalSettings({
+  const { inputMimeType } = await getConfigGlobalSettings({
     spinner,
     baseDirName,
   });
@@ -37,7 +37,7 @@ export default async function (): Promise<void> {
 
   /* Global */
   global.baseDirName = baseDirName;
-  global.fileMimeType = fileMimeType;
+  global.inputMimeType = inputMimeType;
 
   spinner.succeed(`${chalk.green("[環境設定]")} 格式正確`);
 }

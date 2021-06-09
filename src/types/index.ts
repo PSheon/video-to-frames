@@ -9,7 +9,7 @@ declare global {
   namespace NodeJS {
     interface Global {
       baseDirName: string;
-      fileMimeType: string;
+      inputMimeType: string;
     }
   }
 }
