@@ -16,7 +16,7 @@ export default function (): Promise<void> {
       await getMetaData({ spinner });
     }
 
-    spinner.succeed(`${chalk.green("[整理文件]")} 已完成`);
+    spinner.succeed(`${chalk.green("[階段一]")} 整理文件完成`);
     resolve();
   });
 }

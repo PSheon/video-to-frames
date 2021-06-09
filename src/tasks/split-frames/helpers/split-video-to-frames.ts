@@ -25,7 +25,7 @@ export default function ({ spinner }: ISplitVideoToFramesInput): Promise<void> {
         process.exit(1);
       })
       .on("end", () => {
-        spinner.succeed(`${chalk.green("[階段二]")} 分割影片完成！`);
+        spinner.succeed(`${chalk.green("[階段二]")} 分割影片完成`);
         resolve();
       })
       .size("640x?")

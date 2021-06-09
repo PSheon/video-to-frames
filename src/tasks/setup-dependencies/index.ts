@@ -33,5 +33,5 @@ export default async function (): Promise<void> {
     path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffprobe")),
   );
 
-  spinner.succeed(`${chalk.green("[相依套件]")} 已安裝`);
+  spinner.succeed(`${chalk.green("[相依套件]")} 已正確安裝`);
 }

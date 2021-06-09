@@ -4,7 +4,7 @@
   "description": "影片分割工具",
   "author": "PSheon",
   "scripts": {
-    "clean": "rimraf output/stage*/*.jpg output/stage*/*.json",
+    "clean": "rimraf output/stage*/*.jpg output/stage*/*.json output/stage*/*.mp4",
     "format": "prettier --write \"src/**/*.js\"",
     "dev": "NODE_ENV=development ts-node -C ttypescript src/index.ts",
     "start": "NODE_ENV=production node dist/index.js",
