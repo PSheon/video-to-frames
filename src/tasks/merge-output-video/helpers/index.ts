@@ -1,5 +1,6 @@
 import path from "path";
 
+import copyFrameFromInference from "./copy-frame-from-inference";
 import mergeFramesToVideo from "./merge-frames-to-video";
 import mergeInferenceJson from "./merge-inference-json";
 
@@ -9,4 +10,9 @@ const getMergeOutputDirname = (): string => {
   return path.resolve(baseDirName, "output", "stage-merge");
 };
 
-export { mergeFramesToVideo, mergeInferenceJson, getMergeOutputDirname };
+export {
+  mergeFramesToVideo,
+  copyFrameFromInference,
+  mergeInferenceJson,
+  getMergeOutputDirname,
+};

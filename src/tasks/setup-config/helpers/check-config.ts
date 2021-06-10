@@ -14,6 +14,8 @@ export default function ({ spinner, baseDirName }: ICheckConfigInput): void {
     rimraf.sync(path.resolve(baseDirName, "output", "stage-split/*.json"));
     rimraf.sync(path.resolve(baseDirName, "output", "stage-inference/*.jpg"));
     rimraf.sync(path.resolve(baseDirName, "output", "stage-inference/*.json"));
+    rimraf.sync(path.resolve(baseDirName, "output", "stage-merge/*.jpg"));
+    rimraf.sync(path.resolve(baseDirName, "output", "stage-merge/*.json"));
     rimraf.sync(path.resolve(baseDirName, "output", "stage-merge/*.mp4"));
   }
 

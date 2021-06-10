@@ -1,5 +1,3 @@
-import PROCESS_ENV from "config";
-
 import { writeFile } from "fs/promises";
 import path from "path";
 const { combine } = require("combine-json");
