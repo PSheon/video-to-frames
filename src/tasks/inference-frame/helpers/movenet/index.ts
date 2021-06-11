@@ -20,6 +20,7 @@ export default function ({ spinner, modelName }): Promise<void> {
       path.resolve(baseDirName, "output", "stage-split"),
     );
 
+    const inferencesTime: number[] = [];
     let skipFrames = 0;
 
     for (const [inferenceIndex, frameName] of frames.entries()) {
@@ -34,11 +35,14 @@ export default function ({ spinner, modelName }): Promise<void> {
         frameName,
       });
 
+      inferencesTime.length === 100 && inferencesTime.shift();
+      inferencesTime.push(inferenceTime);
+
       spinner.text = generateInferenceHintText(
         inferenceIndex,
         skipFrames,
         frames.length,
-        inferenceTime,
+        inferencesTime,
         processTime,
       );
     }
