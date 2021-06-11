@@ -18,4 +18,6 @@ export default {
   POSENET_INFERENCE_FLIP_HORIZONTAL: false,
   /* Efficient Pose */
   EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD: 0.45,
+  /* BlazePose */
+  BLAZEPOSE_MODEL_MIN_SCORE_THRESHOLD: 0.3,
 };

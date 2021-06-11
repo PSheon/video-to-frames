@@ -21,10 +21,13 @@ export type TConfig = {
     | "efficientpose-ii-lite"
     | "efficientpose-iv"
     | "movenet-lightning"
-    | "movenet-thunder";
+    | "movenet-thunder"
+    | "blazepose-full"
+    | "blazepose-upper";
 
   POSENET_INFERENCE_FLIP_HORIZONTAL: boolean;
   EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD: number;
+  BLAZEPOSE_MODEL_MIN_SCORE_THRESHOLD: number;
 };
 
 export interface IValidConfigInput {
@@ -41,5 +44,5 @@ export interface IGetConfigGlobalSettingsInput {
   baseDirName: string;
 }
 export interface IGetConfigGlobalSettingsOutput {
-  fileMimeType: string;
+  inputMimeType: string;
 }

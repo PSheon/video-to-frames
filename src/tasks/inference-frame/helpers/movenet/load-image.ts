@@ -4,12 +4,12 @@ import path from "path";
 
 const tf = require("@tensorflow/tfjs-node");
 
-export default function (fileName, inputSize) {
+export default function (frameName, inputSize) {
   return new Promise(async (resolve) => {
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
 
     const data = fs.readFileSync(
-      path.resolve(baseDirName, "output", "stage-split", fileName),
+      path.resolve(baseDirName, "output", "stage-split", frameName),
     );
     const obj = tf.tidy(() => {
       const buffer = tf.node.decodeImage(data);
@@ -19,7 +19,7 @@ export default function (fileName, inputSize) {
       const cast = tf.cast(resize, "int32");
       const tensor = cast;
       const img = {
-        fileName,
+        frameName,
         tensor,
         inputShape: buffer?.shape,
         modelShape: tensor?.shape,

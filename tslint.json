@@ -6,6 +6,7 @@
   },
   "rules": {
     "eofline": false,
+    "no-var-requires": false,
     "quotemark": [true, "double"],
     "indent": false,
     "member-access": [false],
@@ -16,9 +17,11 @@
         "named-imports-order": "case-insensitive",
         "grouped-imports": true,
         "groups": [
-          { "name": "npm module", "match": "^(?![.])w*", "order": 10 },
-          { "name": "current dir", "match": "^[.]/", "order": 20 },
-          { "name": "parent dir", "match": "^[.][.]/", "order": 30 }
+          { "name": "current dir", "match": "^[.]/", "order": 4 },
+          { "name": "parent dir", "match": "^[.][.]/", "order": 5 },
+          { "name": "env config", "match": "config", "order": 1 },
+          { "name": "npm internal module", "match": "path|os|fs", "order": 2 },
+          { "name": "npm module", "match": ".*", "order": 3 }
         ]
       }
     ],

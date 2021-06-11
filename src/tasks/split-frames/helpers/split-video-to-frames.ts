@@ -1,13 +1,14 @@
 import PROCESS_ENV from "config";
+
 import path from "path";
+
 import chalk from "chalk";
 import ffmpeg from "fluent-ffmpeg";
-
-import { ISplitVideoToFramesInput } from "../../../types";
+import { ISplitVideoToFramesInput } from "types";
 
 export default function ({ spinner }: ISplitVideoToFramesInput): Promise<void> {
   return new Promise((resolve) => {
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
 
     ffmpeg(
       path.resolve(
@@ -24,7 +25,7 @@ export default function ({ spinner }: ISplitVideoToFramesInput): Promise<void> {
         process.exit(1);
       })
       .on("end", () => {
-        spinner.succeed(`${chalk.green("[階段二]")} 分割影片完成！`);
+        spinner.succeed(`${chalk.green("[階段二]")} 分割影片完成`);
         resolve();
       })
       .size("640x?")

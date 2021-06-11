@@ -3472,7 +3472,7 @@
   },
   "weightsManifest": [
     {
-      "paths": ["blazepose-detect.bin"],
+      "paths": ["blazepose.bin"],
       "weights": [
         {
           "name": "Conv2D_31/filter",

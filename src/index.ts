@@ -1,8 +1,9 @@
+import inferenceFrame from "./tasks/inference-frame";
+import mergeOutputVideo from "./tasks/merge-output-video";
+import preparingInput from "./tasks/preparing-input";
 import setupConfig from "./tasks/setup-config";
 import setupDependencies from "./tasks/setup-dependencies";
-import preparingInput from "./tasks/preparing-input";
 import splitFrames from "./tasks/split-frames";
-import inferenceFrame from "./tasks/inference-frame";
 
 const pipeline = async (): Promise<void> => {
   /* Environment Setup */
@@ -17,5 +18,8 @@ const pipeline = async (): Promise<void> => {
 
   /* Stage 3 - Inference Frame */
   await inferenceFrame();
+
+  /* Stage 4 - Merge Output Video */
+  await mergeOutputVideo();
 };
 pipeline();

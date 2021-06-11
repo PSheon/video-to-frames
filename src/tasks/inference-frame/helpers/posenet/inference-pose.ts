@@ -1,22 +1,24 @@
 import PROCESS_ENV from "config";
 
-import fs from "fs";
-import path from "path";
+import { createWriteStream } from "fs";
 import { writeFile } from "fs/promises";
-import tf from "@tensorflow/tfjs-node";
-import posenet from "@tensorflow-models/posenet";
+import path from "path";
+
 import { createCanvas, Image } from "canvas";
+import { IPoseNetInferenceInput, IPoseNetInferenceOutput } from "types";
 
-import { IPoseNetInferenceOutput } from "../../../../types";
+const tf = require("@tensorflow/tfjs-node");
 
-export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
+export default function ({
+  model,
+  frameName,
+}: IPoseNetInferenceInput): Promise<IPoseNetInferenceOutput> {
   return new Promise(async (resolve) => {
-    const net = await posenet.load();
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
     const bodyObj = {};
     const img = new Image();
 
-    img.src = `${baseDirName}/output/stage-split/${frame}`;
+    img.src = `${baseDirName}/output/stage-split/${frameName}`;
 
     const canvas = createCanvas(img.width, img.height);
     const ctx = canvas.getContext("2d");
@@ -26,12 +28,12 @@ export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
     // @ts-ignore-end
 
     const t0 = process.hrtime.bigint();
-    const pose = await net.estimateSinglePose(input, {
+    const pose = await model.estimateSinglePose(input, {
       flipHorizontal: PROCESS_ENV.get("POSENET_INFERENCE_FLIP_HORIZONTAL"),
     });
     const t1 = process.hrtime.bigint();
     const inferenceTime = Math.round(
-      parseInt((t1 - t0).toString()) / 1000 / 1000,
+      parseInt((t1 - t0).toString(), 10) / 1000 / 1000,
     );
 
     for (const keypoint of pose.keypoints) {
@@ -56,11 +58,11 @@ export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
 
     const t2 = process.hrtime.bigint();
     const processTime = Math.round(
-      parseInt((t2 - t1).toString()) / 1000 / 1000,
+      parseInt((t2 - t1).toString(), 10) / 1000 / 1000,
     );
 
-    const out = fs.createWriteStream(
-      path.join(baseDirName, "output", "stage-inference", frame),
+    const out = createWriteStream(
+      path.join(baseDirName, "output", "stage-inference", frameName),
     );
     const stream = canvas.createJPEGStream();
     stream.pipe(out);
@@ -70,7 +72,7 @@ export default function ({ frame }): Promise<IPoseNetInferenceOutput> {
         baseDirName,
         "output",
         "stage-inference",
-        frame.replace(".jpg", ".json"),
+        frameName.replace(".jpg", ".json"),
       ),
       JSON.stringify(bodyObj),
     );

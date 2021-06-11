@@ -5,13 +5,13 @@ import { splitImageToFrame, splitVideoToFrames } from "./helpers";
 export default function (): Promise<void> {
   return new Promise(async (resolve) => {
     const spinner = ora("分割文件中...").start();
-    const fileMimeType = global["fileMimeType"];
+    const inputMimeType = global.inputMimeType;
 
-    if (fileMimeType.includes("image")) {
+    if (inputMimeType.includes("image")) {
       await splitImageToFrame({ spinner });
     }
 
-    if (fileMimeType.includes("video")) {
+    if (inputMimeType.includes("video")) {
       await splitVideoToFrames({ spinner });
     }
 

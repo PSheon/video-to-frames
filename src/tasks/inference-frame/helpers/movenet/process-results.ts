@@ -1,12 +1,12 @@
 /* TODO Migrate to ts */
-import { MOVE_NET_BODY_PARTS } from "../../../../constant";
+import { MOVE_NET_BODY_PARTS } from "constant";
 
 export default function (res, img) {
   return new Promise((resolve) => {
     const data = res.arraySync();
     res.dispose();
     const kpt = data[0][0];
-    let parts: any = [];
+    const parts: any = [];
     for (let i = 0; i < kpt.length; i++) {
       const part = {
         id: i,

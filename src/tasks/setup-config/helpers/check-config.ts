@@ -2,10 +2,10 @@ import PROCESS_ENV from "config";
 
 import fs from "fs";
 import path from "path";
+
 import chalk from "chalk";
 import rimraf from "rimraf";
-
-import { ICheckConfigInput } from "../../../types";
+import { ICheckConfigInput } from "types";
 
 export default function ({ spinner, baseDirName }: ICheckConfigInput): void {
   /* 刪除暫存文件 */
@@ -14,6 +14,9 @@ export default function ({ spinner, baseDirName }: ICheckConfigInput): void {
     rimraf.sync(path.resolve(baseDirName, "output", "stage-split/*.json"));
     rimraf.sync(path.resolve(baseDirName, "output", "stage-inference/*.jpg"));
     rimraf.sync(path.resolve(baseDirName, "output", "stage-inference/*.json"));
+    rimraf.sync(path.resolve(baseDirName, "output", "stage-merge/*.jpg"));
+    rimraf.sync(path.resolve(baseDirName, "output", "stage-merge/*.json"));
+    rimraf.sync(path.resolve(baseDirName, "output", "stage-merge/*.mp4"));
   }
 
   /* 確認輸入文件存在 */

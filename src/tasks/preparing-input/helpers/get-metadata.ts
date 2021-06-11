@@ -2,21 +2,21 @@ import PROCESS_ENV from "config";
 
 import fs from "fs";
 import path from "path";
+
 import chalk from "chalk";
 import ffmpeg, { FfprobeStream } from "fluent-ffmpeg";
-
-import { IGetMetadataInput } from "../../../types";
+import { IGetMetadataInput } from "types";
 
 export default function ({ spinner }: IGetMetadataInput): Promise<void> {
   return new Promise((resolve) => {
-    const baseDirName = global["baseDirName"];
+    const baseDirName = global.baseDirName;
     ffmpeg(
       path.resolve(
         baseDirName,
         PROCESS_ENV.get("INPUT_FILEPATH"),
         PROCESS_ENV.get("INPUT_FILENAME"),
       ),
-    ).ffprobe(function (err, metadata) {
+    ).ffprobe((err, metadata) => {
       if (err) {
         spinner.fail(
           `${chalk.red("[階段一]")} 無法取得文件資訊: ${err.message}`,
@@ -25,7 +25,7 @@ export default function ({ spinner }: IGetMetadataInput): Promise<void> {
       }
 
       const META_DATA = metadata.streams.find(
-        (item) => item.codec_type == "video",
+        (item) => item.codec_type === "video",
       ) as FfprobeStream;
 
       fs.writeFileSync(
