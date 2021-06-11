@@ -24,7 +24,7 @@ export default function ({ spinner }: IMergeFramesToVideoInput): Promise<void> {
       .on("end", () => {
         resolve();
       })
-      .fps(PROCESS_ENV.get("INPUT_VIDEO_FRAME_SAMPLING"))
+      .inputFPS(PROCESS_ENV.get("INPUT_VIDEO_FRAME_SAMPLING"))
       .output(path.resolve(baseDirName, "output", "stage-merge", `merge.mp4`))
       .run();
   });
