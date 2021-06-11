@@ -5,9 +5,13 @@ import inferencePose from "./inference-pose";
 
 import { generateInferenceHintText } from "../shared";
 
+const posenet = require("@tensorflow-models/posenet");
+
 export default function ({ spinner }): Promise<void> {
   return new Promise(async (resolve) => {
     const baseDirName = global.baseDirName;
+    const model = await posenet.load();
+
     const frames = await readdir(
       path.resolve(baseDirName, "output", "stage-split"),
     );
@@ -22,6 +26,7 @@ export default function ({ spinner }): Promise<void> {
       }
 
       const { inferenceTime, processTime } = await inferencePose({
+        model,
         frameName,
       });
 

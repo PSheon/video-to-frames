@@ -5,6 +5,7 @@ export interface IInferencePoseInput {
 }
 
 export interface IPoseNetInferenceInput {
+  model: any;
   frameName: string;
 }
 export interface IPoseNetInferenceOutput {

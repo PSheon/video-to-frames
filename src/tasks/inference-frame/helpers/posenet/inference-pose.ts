@@ -8,13 +8,12 @@ import { createCanvas, Image } from "canvas";
 import { IPoseNetInferenceInput, IPoseNetInferenceOutput } from "types";
 
 const tf = require("@tensorflow/tfjs-node");
-const posenet = require("@tensorflow-models/posenet");
 
 export default function ({
+  model,
   frameName,
 }: IPoseNetInferenceInput): Promise<IPoseNetInferenceOutput> {
   return new Promise(async (resolve) => {
-    const net = await posenet.load();
     const baseDirName = global.baseDirName;
     const bodyObj = {};
     const img = new Image();
@@ -29,7 +28,7 @@ export default function ({
     // @ts-ignore-end
 
     const t0 = process.hrtime.bigint();
-    const pose = await net.estimateSinglePose(input, {
+    const pose = await model.estimateSinglePose(input, {
       flipHorizontal: PROCESS_ENV.get("POSENET_INFERENCE_FLIP_HORIZONTAL"),
     });
     const t1 = process.hrtime.bigint();
