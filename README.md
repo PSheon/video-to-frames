@@ -3,6 +3,7 @@
   <img src=".github/assets/movenet.jpg" weight="100%" alt="move net" />
 </p>
 <h3 align="center">🎬 影片分割 + 🏃圖片肢體偵測 工具</h3>
+<p align="center">幫你分割影片或圖片，並自動偵測其中的肢體位置資訊.</p>
 
 <p align="center">
   <a href="https://github.com/PSheon/video-to-frames/actions/workflows/node.yml">
@@ -14,8 +15,6 @@
 </p>
 
 ---
-
-使用 node.js 搭配 FFmpeg
 
 ### 可使用模型
 
@@ -29,14 +28,15 @@
    - efficientpose-ii-lite
    - efficientpose-iv
 
-3. Efficient Pose
+3. MoveNet
 
    - movenet-lightning
    - movenet-thunder
 
 4. Blaze Pose
 
-   - 開發中
+   - blazepose-full
+   - blazepose-upper
 
 ---
 
@@ -115,4 +115,20 @@ npm run start
 
 ## 可設定內容說明
 
-建立文件中...
+<div markdown="block" style="overflow-x: scroll;white-space: nowrap;">
+
+| 設定名稱                                | 說明                 | 型別    | 預設值                  | 規範                                                                                                                                                                                                     |
+| --------------------------------------- | -------------------- | ------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DELETE_PREVIOUS_OUTPUT                  | 是否保留前一次的結果 | Boolean | `true`                  |                                                                                                                                                                                                          |
+| INPUT_FILEPATH                          | 輸入文件的資料夾路徑 | String  | `input`                 |                                                                                                                                                                                                          |
+| INPUT_FILENAME                          | 輸入文件的名稱       | String  | `sample.mp4`            | 文件必須是 圖片 或 影片 格式                                                                                                                                                                             |
+| SPLIT_FRAME_IMAGE_PREFIX                | 分割出來的圖片前綴   | String  | `frame`                 |                                                                                                                                                                                                          |
+| INPUT_VIDEO_START_TIME                  | 開始推理影片的時間   | String  | `0.0`                   | 只有在輸入文件是影片格式時生效                                                                                                                                                                           |
+| INPUT_VIDEO_DURATION                    | 推理時間的長度       | String  | `30.0`                  | 只有在輸入文件是影片格式時生效                                                                                                                                                                           |
+| INPUT_VIDEO_FRAME_SAMPLING              | 分割影像的每秒採樣率 | Number  | `10`                    | 只有在輸入文件是影片格式時生效                                                                                                                                                                           |
+| MODEL_NAME                              | 使用的模型名稱       | String  | `efficientpose-ii-lite` | 可用模型："posenet" \|<br>"efficientpose-i-lite" \|<br>"efficientpose-ii-lite" \|<br>"efficientpose-iv" \|<br>"movenet-lightning" \|<br>"movenet-thunder" \|<br>"blazepose-full" \|<br>"blazepose-upper" |
+| POSENET_INFERENCE_FLIP_HORIZONTAL       | 是否翻轉輸入影像     | Boolean | `false`                 | 只有在模型是"posenet"時生效                                                                                                                                                                              |
+| EFFICIENTPOSE_MODEL_MIN_SCORE_THRESHOLD | 最低信心閥值         | Number  | `0.45`                  | 只有在模型是"efficientpose"時生效                                                                                                                                                                        |
+| BLAZEPOSE_MODEL_MIN_SCORE_THRESHOLD     | 最低信心閥值         | Number  | `0.3`                   | 只有在模型是"blazepose"時生效                                                                                                                                                                            |
+
+</div>
