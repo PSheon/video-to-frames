@@ -10,14 +10,10 @@ import setupDependencies from "../src/tasks/setup-dependencies";
 import splitFrames from "../src/tasks/split-frames";
 import "../src/types";
 
-describe(`E2E test case:`, () => {
+describe(`E2E test - setup`, () => {
   beforeAll(async () => {
     await setupConfig();
     await setupDependencies();
-
-    await preparingInput();
-
-    await splitFrames();
   });
 
   it(`should has global 'baseDirName' string.`, () => {
@@ -43,7 +39,8 @@ describe(`E2E test case:`, () => {
 
   it(`folder output should be cleaned up.`, async () => {
     const baseDirName = global.baseDirName;
-    const filesArray: string[] = new Array();
+    let filesArray: string[] = [];
+    let existOtherFiles = false;
 
     const stageSplitFiles = await readdir(
       path.resolve(baseDirName, "output", "stage-split"),
@@ -55,16 +52,15 @@ describe(`E2E test case:`, () => {
       path.resolve(baseDirName, "output", "stage-merge"),
     );
 
-    filesArray.concat(stageSplitFiles);
-    filesArray.concat(stageInferenceFiles);
-    filesArray.concat(stageMergeFiles);
+    filesArray = stageSplitFiles.concat(stageInferenceFiles, stageMergeFiles);
+    filesArray.forEach((item) => {
+      if (item.includes(".jpg") || item.includes(".json")) {
+        existOtherFiles = true;
+        return;
+      }
+    });
 
-    expect(
-      filesArray.includes(".jpg") ||
-        filesArray.includes(".json") ||
-        filesArray.includes(".ts") ||
-        filesArray.includes(".m3u8"),
-    ).toBeFalsy();
+    expect(existOtherFiles).toBeFalsy();
   });
 
   it(`should be have ffmpeg installed.`, async () => {
@@ -76,13 +72,9 @@ describe(`E2E test case:`, () => {
     const ffprobeExist = existsSync(
       path.resolve(baseDirName, "ffmpeg", "ffprobe"),
     );
-    const ffplayExist = existsSync(
-      path.resolve(baseDirName, "ffmpeg", "ffplay"),
-    );
 
     expect(ffmpegExist).toBeTruthy();
     expect(ffprobeExist).toBeTruthy();
-    expect(ffplayExist).toBeTruthy();
   });
 
   it(`ffmpeg library path should be setup correctly.`, async () => {
@@ -110,6 +102,14 @@ describe(`E2E test case:`, () => {
         },
       );
     });
+  });
+});
+
+describe(`E2E test - run pipeline`, () => {
+  beforeAll(async () => {
+    await preparingInput();
+
+    await splitFrames();
   });
 
   it(`should generate metadata.json.`, async () => {
