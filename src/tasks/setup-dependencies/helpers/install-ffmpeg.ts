@@ -8,7 +8,7 @@ export default ({ spinner, baseDirName }: IInstallFFMPEGInput): Promise<void> =>
   new Promise((resolve) => {
     const platform = ffbinaries.detectPlatform();
     ffbinaries.downloadBinaries(
-      ["ffmpeg", "ffprobe"],
+      ["ffmpeg", "ffprobe", "ffplay"],
       {
         platform,
         quiet: true,

@@ -25,6 +25,10 @@ export default async function (): Promise<void> {
     spinner.text = `安裝 ${chalk.yellow("ffprobe")} ...`;
     await installFFMPEG({ spinner, baseDirName });
   }
+  if (!fs.existsSync(path.resolve(baseDirName, "ffmpeg", "ffplay"))) {
+    spinner.text = `安裝 ${chalk.yellow("ffplay")} ...`;
+    await installFFMPEG({ spinner, baseDirName });
+  }
 
   ffmpeg.setFfmpegPath(
     path.resolve(baseDirName, path.resolve(baseDirName, "ffmpeg", "ffmpeg")),

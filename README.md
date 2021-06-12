@@ -6,6 +6,9 @@
 <p align="center">幫你分割影片或圖片，並自動偵測其中的肢體位置資訊.</p>
 
 <p align="center">
+  <a href="https://codecov.io/gh/PSheon/video-to-frames">
+    <img src="https://codecov.io/gh/PSheon/video-to-frames/branch/master/graph/badge.svg?token=35W6VGXODX"/>
+  </a>
   <a href="https://github.com/PSheon/video-to-frames/actions/workflows/node.yml">
     <img alt="Node.js CI" src="https://github.com/PSheon/video-to-frames/actions/workflows/node.yml/badge.svg">
   </a>

@@ -1,3 +1,5 @@
+import EventBus from "js-event-bus";
+
 export * from "./setup-config";
 export * from "./setup-dependencies";
 export * from "./preparing-input";
@@ -10,6 +12,7 @@ declare global {
     interface Global {
       baseDirName: string;
       inputMimeType: string;
+      eventBus: EventBus;
     }
   }
 }

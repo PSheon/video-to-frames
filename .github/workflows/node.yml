@@ -26,10 +26,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cp config/default.ts config/production.ts
-      - run: cp input/sample.mp4 input/input.mp4
-      - run: npm install
-      - run: npm run build
-      - run: npm run start
+      - name: Install dependencies
+        run: npm install
+      - name: Run the tests
+        run: npm test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
         env:
           CI: true
