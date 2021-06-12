@@ -51,6 +51,7 @@ typings/
 # ignore production configuration
 config/*.ts
 !config/default.ts
+!config/test.ts
 
 # input folder
 input/*
