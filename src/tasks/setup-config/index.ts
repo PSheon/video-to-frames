@@ -3,6 +3,7 @@ import PROCESS_ENV from "config";
 import path from "path";
 
 import chalk from "chalk";
+import EventBus from "js-event-bus";
 import moment from "moment";
 import "moment-timezone";
 import "moment/locale/zh-tw";
@@ -23,6 +24,9 @@ export default async function (): Promise<void> {
   const spinner = ora("檢查設定參數...").start();
   const baseDirName = path.join(__dirname, "../../../");
 
+  /* Event Bus */
+  const eventBus = new EventBus();
+
   /* Check all config correctly */
   validateConfig({ spinner, config: PROCESS_ENV.util.toObject() as TConfig });
   checkConfig({ spinner, baseDirName });
@@ -38,6 +42,7 @@ export default async function (): Promise<void> {
   /* Global */
   global.baseDirName = baseDirName;
   global.inputMimeType = inputMimeType;
+  global.eventBus = eventBus;
 
   spinner.succeed(`${chalk.green("[環境設定]")} 格式正確`);
 }
