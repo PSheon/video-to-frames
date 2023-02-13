@@ -3,7 +3,7 @@ import path from "path";
 
 import inferencePose from "./inference-pose";
 
-import { generateInferenceHintText } from "../shared";
+import { generateInferenceHintText } from "src/tasks/inference-frame/helpers/shared";
 
 const posenet = require("@tensorflow-models/posenet");
 

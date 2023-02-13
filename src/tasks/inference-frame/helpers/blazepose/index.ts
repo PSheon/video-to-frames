@@ -4,7 +4,10 @@ import path from "path";
 
 import inferencePose from "./inference-pose";
 
-import { generateInferenceHintText, getBlazePoseModelPath } from "../shared";
+import {
+  generateInferenceHintText,
+  getBlazePoseModelPath,
+} from "src/tasks/inference-frame/helpers/shared";
 
 const tf = require("@tensorflow/tfjs-node");
 

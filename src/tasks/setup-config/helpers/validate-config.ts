@@ -1,6 +1,6 @@
 import Ajv, { JTDSchemaType } from "ajv/dist/jtd";
 import chalk from "chalk";
-import { IValidConfigInput, TConfig } from "types";
+import { IValidConfigInput, TConfig } from "src/types";
 
 import localizeError from "./localize-error";
 

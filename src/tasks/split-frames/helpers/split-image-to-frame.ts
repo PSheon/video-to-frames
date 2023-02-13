@@ -4,7 +4,7 @@ import path from "path";
 
 import chalk from "chalk";
 import ffmpeg from "fluent-ffmpeg";
-import { ISplitImageToFrameInput } from "types";
+import { ISplitImageToFrameInput } from "src/types";
 
 export default function ({ spinner }: ISplitImageToFrameInput): Promise<void> {
   return new Promise((resolve) => {

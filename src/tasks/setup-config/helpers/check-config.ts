@@ -5,7 +5,7 @@ import path from "path";
 
 import chalk from "chalk";
 import rimraf from "rimraf";
-import { ICheckConfigInput } from "types";
+import { ICheckConfigInput } from "src/types";
 
 export default function ({ spinner, baseDirName }: ICheckConfigInput): void {
   /* 刪除暫存文件 */

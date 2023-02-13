@@ -5,7 +5,7 @@ const tf = require("@tensorflow/tfjs-node");
 import {
   BLAZE_POSE_FULL_BODY_PARTS,
   BLAZE_POSE_UPPER_BODY_PARTS,
-} from "constant";
+} from "src/constant";
 
 // each points has x, y, z, visibility, presence
 const depth = 5;

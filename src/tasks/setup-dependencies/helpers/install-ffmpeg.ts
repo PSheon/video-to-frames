@@ -2,7 +2,7 @@ import path from "path";
 
 import chalk from "chalk";
 import ffbinaries from "ffbinaries";
-import { IInstallFFMPEGInput } from "types";
+import { IInstallFFMPEGInput } from "src/types";
 
 export default ({ spinner, baseDirName }: IInstallFFMPEGInput): Promise<void> =>
   new Promise((resolve) => {

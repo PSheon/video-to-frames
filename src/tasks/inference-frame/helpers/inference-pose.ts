@@ -1,7 +1,7 @@
 import PROCESS_ENV from "config";
 
 import chalk from "chalk";
-import { IInferencePoseInput } from "types";
+import { IInferencePoseInput } from "src/types";
 
 import blazepose from "./blazepose";
 import efficientpose from "./efficientpose";

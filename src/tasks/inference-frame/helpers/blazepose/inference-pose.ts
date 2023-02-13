@@ -2,7 +2,7 @@
 import { writeFile } from "fs/promises";
 import path from "path";
 
-import { IBlazePoseInferenceInput, IBlazePoseInferenceOutput } from "types";
+import { IBlazePoseInferenceInput, IBlazePoseInferenceOutput } from "src/types";
 
 const tf = require("@tensorflow/tfjs-node");
 

@@ -7,7 +7,7 @@ import inferencePose from "./inference-pose";
 import {
   generateInferenceHintText,
   getEfficientPoseModelPath,
-} from "../shared";
+} from "src/tasks/inference-frame/helpers/shared";
 
 const tf = require("@tensorflow/tfjs-node");
 

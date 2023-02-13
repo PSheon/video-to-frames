@@ -8,7 +8,7 @@ import moment from "moment";
 import "moment-timezone";
 import "moment/locale/zh-tw";
 import ora from "ora";
-import { TConfig } from "types";
+import { TConfig } from "src/types";
 
 import {
   checkConfig,

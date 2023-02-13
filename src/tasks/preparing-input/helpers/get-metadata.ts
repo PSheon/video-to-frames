@@ -5,7 +5,7 @@ import path from "path";
 
 import chalk from "chalk";
 import ffmpeg, { FfprobeStream } from "fluent-ffmpeg";
-import { IGetMetadataInput } from "types";
+import { IGetMetadataInput } from "src/types";
 
 export default function ({ spinner }: IGetMetadataInput): Promise<void> {
   return new Promise((resolve) => {

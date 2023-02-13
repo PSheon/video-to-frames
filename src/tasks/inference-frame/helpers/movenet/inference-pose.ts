@@ -2,7 +2,7 @@
 import { writeFile } from "fs/promises";
 import path from "path";
 
-import { IMoveNetInferenceInput, IMoveNetInferenceOutput } from "types";
+import { IMoveNetInferenceInput, IMoveNetInferenceOutput } from "src/types";
 
 import loadImage from "./load-image";
 import processResults from "./process-results";

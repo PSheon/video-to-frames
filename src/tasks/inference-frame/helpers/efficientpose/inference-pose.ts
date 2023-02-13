@@ -5,7 +5,7 @@ import path from "path";
 import {
   IEfficientPoseInferenceInput,
   IEfficientPoseInferenceOutput,
-} from "types";
+} from "src/types";
 
 import loadImage from "./load-image";
 import processResults from "./process-results";

@@ -4,7 +4,10 @@ import path from "path";
 
 import inferencePose from "./inference-pose";
 
-import { generateInferenceHintText, getMoveNetModelPath } from "../shared";
+import {
+  generateInferenceHintText,
+  getMoveNetModelPath,
+} from "src/tasks/inference-frame/helpers/shared";
 
 const tf = require("@tensorflow/tfjs-node");
 

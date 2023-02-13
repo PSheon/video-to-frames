@@ -5,7 +5,7 @@ import { writeFile } from "fs/promises";
 import path from "path";
 
 import { createCanvas, Image } from "canvas";
-import { IPoseNetInferenceInput, IPoseNetInferenceOutput } from "types";
+import { IPoseNetInferenceInput, IPoseNetInferenceOutput } from "src/types";
 
 const tf = require("@tensorflow/tfjs-node");
 

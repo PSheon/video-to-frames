@@ -7,7 +7,7 @@ import FileType, { FileTypeResult } from "file-type";
 import {
   IGetConfigGlobalSettingsInput,
   IGetConfigGlobalSettingsOutput,
-} from "types";
+} from "src/types";
 
 export default async function ({
   spinner,
