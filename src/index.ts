@@ -1,9 +1,11 @@
-import inferenceFrame from "./tasks/inference-frame";
-import mergeOutputVideo from "./tasks/merge-output-video";
-import preparingInput from "./tasks/preparing-input";
+import EventBus from "js-event-bus";
+
 import setupConfig from "./tasks/setup-config";
 import setupDependencies from "./tasks/setup-dependencies";
+import preparingInput from "./tasks/preparing-input";
 import splitFrames from "./tasks/split-frames";
+import inferenceFrame from "./tasks/inference-frame";
+import mergeOutputVideo from "./tasks/merge-output-video";
 
 const pipeline = async (): Promise<void> => {
   /* Environment Setup */
@@ -23,3 +25,13 @@ const pipeline = async (): Promise<void> => {
   await mergeOutputVideo();
 };
 pipeline();
+
+declare global {
+  namespace NodeJS {
+    interface Global {
+      baseDirName: string;
+      inputMimeType: string;
+      eventBus: EventBus;
+    }
+  }
+}
